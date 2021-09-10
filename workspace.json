@@ -1,7 +1,129 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "rooftop": {
+      "root": "apps/rooftop",
+      "sourceRoot": "apps/rooftop/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/rooftop",
+            "index": "apps/rooftop/src/index.html",
+            "main": "apps/rooftop/src/main.tsx",
+            "polyfills": "apps/rooftop/src/polyfills.ts",
+            "tsConfig": "apps/rooftop/tsconfig.app.json",
+            "assets": [
+              "apps/rooftop/src/favicon.ico",
+              "apps/rooftop/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/rooftop/src/environments/environment.ts",
+                  "with": "apps/rooftop/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "rooftop:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "rooftop:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/rooftop/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/rooftop"],
+          "options": {
+            "jestConfig": "apps/rooftop/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "rooftop-e2e": {
+      "root": "apps/rooftop-e2e",
+      "sourceRoot": "apps/rooftop-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/rooftop-e2e/cypress.json",
+            "devServerTarget": "rooftop:serve",
+            "tsConfig": "apps/rooftop-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rooftop:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/rooftop-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "rooftop"
 }
