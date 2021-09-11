@@ -102,7 +102,6 @@
             "polyfills": "apps/rooftop/src/polyfills.ts",
             "tsConfig": "apps/rooftop/tsconfig.app.json",
             "assets": [
-              "apps/rooftop/src/favicon.ico",
               "apps/rooftop/src/assets"
             ],
             "styles": [],
