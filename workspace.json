@@ -8,13 +8,17 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/components",
             "tsConfig": "libs/components/tsconfig.lib.json",
             "project": "libs/components/package.json",
             "entryFile": "libs/components/src/index.ts",
-            "external": ["react/jsx-runtime"],
+            "external": [
+              "react/jsx-runtime"
+            ],
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
@@ -27,14 +31,20 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/components/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components"],
+          "outputs": [
+            "coverage/libs/components"
+          ],
           "options": {
             "jestConfig": "libs/components/jest.config.js",
             "passWithNoTests": true
@@ -57,7 +67,9 @@
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "uiFramework": "@storybook/react",
             "outputPath": "dist/storybook/components",
@@ -73,32 +85,6 @@
         }
       }
     },
-    "components-e2e": {
-      "root": "apps/components-e2e",
-      "sourceRoot": "apps/components-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/components-e2e/cypress.json",
-            "devServerTarget": "components:storybook"
-          },
-          "configurations": {
-            "ci": {
-              "devServerTarget": "components:storybook:ci"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/components-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
     "rooftop": {
       "root": "apps/rooftop",
       "sourceRoot": "apps/rooftop/src",
@@ -106,7 +92,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/rooftop",
             "index": "apps/rooftop/src/index.html",
@@ -161,14 +149,20 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/rooftop/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/rooftop/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/rooftop"],
+          "outputs": [
+            "coverage/apps/rooftop"
+          ],
           "options": {
             "jestConfig": "apps/rooftop/jest.config.js",
             "passWithNoTests": true
@@ -196,9 +190,13 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/rooftop-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/rooftop-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

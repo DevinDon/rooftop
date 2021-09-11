@@ -36,16 +36,14 @@
     "components": {
       "tags": []
     },
-    "components-e2e": {
-      "tags": [],
-      "implicitDependencies": ["components"]
-    },
     "rooftop": {
       "tags": []
     },
     "rooftop-e2e": {
       "tags": [],
-      "implicitDependencies": ["rooftop"]
+      "implicitDependencies": [
+        "rooftop"
+      ]
     }
   }
 }
