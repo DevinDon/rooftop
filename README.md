@@ -2,6 +2,10 @@
 
 夜寒苏的天台。
 
+## 特殊字体 | Special Font
+
+CSS Link: <https://fonts.googleapis.com/css?family=VT323>
+
 ## THE MIT LICENSE
 
 Copyright 2018+ Devin Don
