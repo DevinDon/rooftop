@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "pnpm build:rooftop",
+    "build": "NODE_ENV=production nx run-many --target=build --all=true --parallel=true --maxParallel=4 --prod",
     "build:rooftop": "NODE_ENV=production nx build rooftop --prod",
     "test": "nx test"
   },
