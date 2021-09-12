@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react';
-
 import { BrowserRouter } from 'react-router-dom';
-
 import App from './app';
 
 describe('App', () => {
-  it('should render successfully', () => {
+
+  it('should render App successfully', () => {
     const { baseElement } = render(
       <BrowserRouter>
         <App />
@@ -15,13 +14,4 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
-
-    expect(getByText('Welcome to rooftop!')).toBeTruthy();
-  });
 });
