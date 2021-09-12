@@ -83,5 +83,3 @@ export const Card = {
   /** 卡片底部标注 */
   Footer: (props: CardProps['Footer']) => <StyledCardFooter {...props} />,
 };
-
-export default Card;
