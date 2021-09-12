@@ -21,8 +21,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@iinfinity/components": [
-        "libs/components/src/index.ts"
+      "@iinfinity/components/*": [
+        "libs/components/src/*"
       ]
     }
   },
