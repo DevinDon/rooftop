@@ -1,8 +1,8 @@
 import { Card, CardProps } from './card';
 
-export const cardArgsWithLink: CardProps['Container'] = { link: { url: 'https://blog.don.red/', inNewTab: true } };
+export const ARGS_WITH_LINK: CardProps['Container'] = { link: { url: 'https://blog.don.red/', inNewTab: true } };
 
-export const cardArgsWithoutLink: CardProps['Container'] = { link: undefined };
+export const ARGS_WITHOUT_LINK: CardProps['Container'] = { link: undefined };
 
 const cardTitleContent = '卡片';
 

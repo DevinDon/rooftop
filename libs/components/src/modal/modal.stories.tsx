@@ -1,6 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { useState } from 'react';
-import { clickToCloseModalArgs, darkModalArgs, lightModalArgs } from './args';
+import { ARGS_WITH_CONTENT, ARGS_WITH_DARK_BG, ARGS_WITH_LIGHT_BG } from './args';
 import { Modal, ModalProps } from './modal';
 
 export default {
@@ -14,19 +13,15 @@ const Template: Story<ModalProps> = args => <div>
 </div>;
 
 export const DarkModal = Template.bind({});
-DarkModal.args = darkModalArgs;
+DarkModal.args = ARGS_WITH_DARK_BG;
 
 export const LightModal = Template.bind({});
-LightModal.args = lightModalArgs;
+LightModal.args = ARGS_WITH_LIGHT_BG;
 
-const ClickToCloseTemplate: Story<ModalProps> = args => {
-  const [isVisible, setIsVisible] = useState(true);
-
-  return <div>
-    <p>Something here</p>
-    <Modal {...args} isVisible={isVisible} onClick={() => setIsVisible(false)} />
-  </div>
-};
+const ClickToCloseTemplate: Story<ModalProps> = args => <div>
+  <p>Something here</p>
+  <Modal {...args} />
+</div>;
 
 export const ClickToCloseModal = ClickToCloseTemplate.bind({});
-ClickToCloseModal.args = clickToCloseModalArgs;
+ClickToCloseModal.args = ARGS_WITH_CONTENT;
