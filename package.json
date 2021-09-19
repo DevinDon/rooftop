@@ -71,7 +71,13 @@
     "webpack-sources": "^3.0.2"
   },
   "dependencies": {
+    "@nrwl/node": "^12.9.0",
+    "@rester/core": "^0.18.7",
+    "@rester/logger": "^0.18.7",
+    "@rester/orm": "^0.18.7",
+    "@rester/queue": "^0.18.7",
     "core-js": "^3.6.5",
+    "puppeteer": "^10.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "17.0.2",

@@ -137,7 +137,9 @@
           "executor": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "rooftop:build",
-            "hmr": true
+            "hmr": true,
+            "browserTarget": "surfboard:build:development",
+            "proxyConfig": "apps/rooftop/proxy.config.json"
           },
           "configurations": {
             "production": {
@@ -199,10 +201,78 @@
           }
         }
       }
+    },
+    "surfboard": {
+      "root": "apps/surfboard",
+      "projectType": "application",
+      "sourceRoot": "apps/surfboard/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/surfboard",
+            "main": "apps/surfboard/src/main.ts",
+            "tsConfig": "apps/surfboard/tsconfig.app.json",
+            "assets": [
+              "apps/surfboard/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/surfboard/src/environments/environment.ts",
+                  "with": "apps/surfboard/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "surfboard:build"
+          }
+        },
+        "mongo": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "docker run --name rester-mongodb-standalone -e MONGO_INITDB_ROOT_USERNAME=rester-dev -e MONGO_INITDB_ROOT_PASSWORD=rester-dev -p 27017:27017 -v rester-mongodb-standalone:/data/db -d mongo:4"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/surfboard/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/surfboard"
+          ],
+          "options": {
+            "jestConfig": "apps/surfboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/react"
+    "defaultCollection": "@rester/nx"
   },
   "generators": {
     "@nrwl/react": {
