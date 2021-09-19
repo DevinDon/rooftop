@@ -17,6 +17,7 @@ specifiers:
   '@nrwl/web': ^12.9.0
   '@nrwl/workspace': 12.9.0
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.0-rc.2
+  '@rester/nx': ^0.18.7
   '@storybook/addon-essentials': ~6.3.0
   '@storybook/react': ~6.3.0
   '@svgr/webpack': ^5.4.0
@@ -95,6 +96,7 @@ devDependencies:
   '@nrwl/web': 12.9.0_33c468f6615be4aa75caa8fbdedbc6f7
   '@nrwl/workspace': 12.9.0_prettier@2.4.0
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.0-rc.2_4719edabbb107d7c6fc4e7cd4a043623
+  '@rester/nx': 0.18.7
   '@storybook/addon-essentials': 6.3.8_585dbed8d82ed7e15ee246643b9196b9
   '@storybook/react': 6.3.8_a8a621b5f57fa83d4927c676109407d6
   '@svgr/webpack': 5.5.0
@@ -3875,6 +3877,10 @@ packages:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-lifecycles-compat: 3.0.4
+    dev: true
+
+  /@rester/nx/0.18.7:
+    resolution: {integrity: sha512-vr1dL7gIYN7rzliS7mqMtsc/pTAdoJ+px5bphfOvpr6nqyeHJSjJsqLV7ofYcw8QI6JkIBWoXGmzM6IZ+V4UMg==}
     dev: true
 
   /@rollup/plugin-babel/5.3.0_@babel+core@7.15.5+rollup@2.56.3:

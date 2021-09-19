@@ -26,6 +26,7 @@
     "@nrwl/web": "^12.9.0",
     "@nrwl/workspace": "12.9.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-rc.2",
+    "@rester/nx": "^0.18.7",
     "@storybook/addon-essentials": "~6.3.0",
     "@storybook/react": "~6.3.0",
     "@svgr/webpack": "^5.4.0",
