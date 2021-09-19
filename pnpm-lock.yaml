@@ -17,11 +17,11 @@ specifiers:
   '@nrwl/web': ^12.9.0
   '@nrwl/workspace': 12.9.0
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.0-rc.2
-  '@rester/core': ^0.18.7
-  '@rester/logger': ^0.18.7
-  '@rester/nx': ^0.18.7
-  '@rester/orm': ^0.18.7
-  '@rester/queue': ^0.18.7
+  '@rester/core': ^0.18.8
+  '@rester/logger': ^0.18.8
+  '@rester/nx': ^0.18.8
+  '@rester/orm': ^0.18.8
+  '@rester/queue': ^0.18.8
   '@storybook/addon-essentials': ~6.3.0
   '@storybook/react': ~6.3.0
   '@svgr/webpack': ^5.4.0
@@ -76,10 +76,10 @@ specifiers:
 
 dependencies:
   '@nrwl/node': 12.9.0_prettier@2.4.0+typescript@4.3.5
-  '@rester/core': 0.18.7_652b6d12848c9a93e0d1f466b7511a89
-  '@rester/logger': 0.18.7
-  '@rester/orm': 0.18.7
-  '@rester/queue': 0.18.7
+  '@rester/core': 0.18.8_8b6804058ef8bb994af36445254449e6
+  '@rester/logger': 0.18.8
+  '@rester/orm': 0.18.8
+  '@rester/queue': 0.18.8
   core-js: 3.17.3
   puppeteer: 10.2.0
   react: 17.0.2
@@ -106,7 +106,7 @@ devDependencies:
   '@nrwl/web': 12.9.0_33c468f6615be4aa75caa8fbdedbc6f7
   '@nrwl/workspace': 12.9.0_prettier@2.4.0
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.0-rc.2_4719edabbb107d7c6fc4e7cd4a043623
-  '@rester/nx': 0.18.7
+  '@rester/nx': 0.18.8
   '@storybook/addon-essentials': 6.3.8_585dbed8d82ed7e15ee246643b9196b9
   '@storybook/react': 6.3.8_a8a621b5f57fa83d4927c676109407d6
   '@svgr/webpack': 5.5.0
@@ -3838,41 +3838,41 @@ packages:
       react-lifecycles-compat: 3.0.4
     dev: true
 
-  /@rester/core/0.18.7_652b6d12848c9a93e0d1f466b7511a89:
-    resolution: {integrity: sha512-p8D03mwHIHQwDa4FT3asywsepT/Yp9tCEs7YGOjrYfewV7NWf5Xz3ET04iKRqG86pEh8+m9pqQpQmY8SWXKuyQ==}
+  /@rester/core/0.18.8_8b6804058ef8bb994af36445254449e6:
+    resolution: {integrity: sha512-0ePOziKomWEb1zzcs77lDJ0WtJWdC+fKs3gAQ+Zlqlr0Ivstu5uFyLZng5ud9DgDIijd1qe5QEAKnmdCyEYu3A==}
     peerDependencies:
-      '@rester/logger': ^0.18.7
-      '@rester/orm': ^0.18.7
+      '@rester/logger': ^0.18.8
+      '@rester/orm': ^0.18.8
     dependencies:
-      '@rester/logger': 0.18.7
-      '@rester/orm': 0.18.7
+      '@rester/logger': 0.18.8
+      '@rester/orm': 0.18.8
       mime-types: 2.1.32
       mongodb: 4.1.2
       reflect-metadata: 0.1.13
       yaml: 2.0.0-8
     dev: false
 
-  /@rester/logger/0.18.7:
-    resolution: {integrity: sha512-iz/CEJLSIUNP+hp00HaqFvRvt809OoQruxH6btOlMkJvCrdzzWDNYq6OXw/P2Qdop0YVYCwzJMEV/ykossJztg==}
+  /@rester/logger/0.18.8:
+    resolution: {integrity: sha512-yducSpi63911ZAtgyACxkEhN7QEH/1G46oPVuTuPUdp3xARDAidW0qQ1jsqjqlpDXG+d5EbkaobUXyqpL4XEdA==}
     dev: false
 
-  /@rester/nx/0.18.7:
-    resolution: {integrity: sha512-vr1dL7gIYN7rzliS7mqMtsc/pTAdoJ+px5bphfOvpr6nqyeHJSjJsqLV7ofYcw8QI6JkIBWoXGmzM6IZ+V4UMg==}
+  /@rester/nx/0.18.8:
+    resolution: {integrity: sha512-kVSY/jAGtjE4qQR1QJ6MWcwkqqLDzdYB1qPWnJnMhd33puLitctY5tGKU/nrIfPhSHxbHSDiRHM5kntbCBG2UA==}
     dev: true
 
-  /@rester/orm/0.18.7:
-    resolution: {integrity: sha512-9cvPkeXpS+iLoUQ4eSfSaHgDsJIbZxCgHgbKT8ZMQZvdPUI//sc8C6dy1qW5y1X8L5CeRPoGOEypxFUKuSDJBg==}
+  /@rester/orm/0.18.8:
+    resolution: {integrity: sha512-aN4XytBUbCYTMc7qylgIGxV+OBv6+O1Q3y3Hih7l796VXq6eCmo2Dv6ISo6FUNphk3NsbZLBbuDlQKWXuFts0A==}
     peerDependencies:
       mongodb: ^4.1.2
     dependencies:
-      '@rester/logger': 0.18.7
+      '@rester/logger': 0.18.8
       aws4: 1.11.0
       reflect-metadata: 0.1.13
       saslprep: 1.0.3
     dev: false
 
-  /@rester/queue/0.18.7:
-    resolution: {integrity: sha512-KFVPGSudWdcpDIx4veRL1YoWSzWsRxqjskpPGzpIgfR177vlKcxFl2DGP9VV0rlJeE5puE3oyAubsEaIZUODDg==}
+  /@rester/queue/0.18.8:
+    resolution: {integrity: sha512-VcZtIGDdcVuQQXYG/Uk9ECbfYvKPCEyMDUjDZOJ0kqHc+dTeLuoNksvdRq4zt3BxGaVFlVi1koHnvZlXZBb4Hg==}
     dependencies:
       ioredis: 4.27.9
       uuid: 8.3.2

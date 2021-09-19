@@ -1,9 +1,9 @@
 import { cleanify } from '@rester/core';
 import { Column, Entity, MongoEntity, ObjectId, PaginationParam } from '@rester/orm';
-import { Aphorism, AphorismID, AphorismInsertParams } from './aphorism.model';
+import { Surf, SurfID, SurfInsertParams } from './surf.model';
 
-@Entity({ name: 'aphorism' })
-export class AphorismEntity extends MongoEntity<Aphorism> implements Aphorism {
+@Entity({ name: 'surf' })
+export class SurfEntity extends MongoEntity<Surf> implements Surf {
 
   @Column()
   _id: ObjectId;
@@ -27,11 +27,11 @@ export class AphorismEntity extends MongoEntity<Aphorism> implements Aphorism {
     return { list: await this.collection.aggregate([{ $sample: { size: take } }]).toArray() };
   }
 
-  async insertOne(aphorism: AphorismInsertParams) {
+  async insertOne(surf: SurfInsertParams) {
     const date = new Date();
     const id = await this.collection
       .insertOne({
-        ...aphorism,
+        ...surf,
         like: 0,
         createdAt: date,
         updatedAt: date,
@@ -40,17 +40,17 @@ export class AphorismEntity extends MongoEntity<Aphorism> implements Aphorism {
     return this.collection.findOne({ _id: new ObjectId(id) });
   }
 
-  async deleteOne(id: AphorismID) {
+  async deleteOne(id: SurfID) {
     await this.collection.deleteOne({ _id: new ObjectId(id) });
     return [id];
   }
 
-  async updateOne(id: AphorismID, aphorism: Partial<Aphorism>) {
+  async updateOne(id: SurfID, surf: Partial<Surf>) {
     await this.collection.updateOne(
       { _id: new ObjectId(id) },
       {
         $set: cleanify({
-          ...aphorism,
+          ...surf,
           updatedAt: new Date(),
         }),
       },
@@ -58,10 +58,10 @@ export class AphorismEntity extends MongoEntity<Aphorism> implements Aphorism {
     return this.collection.findOne({ _id: new ObjectId(id) });
   }
 
-  async findOne(id: AphorismID) {
+  async findOne(id: SurfID) {
     return this.collection.findOne({ _id: new ObjectId(id) });
   }
 
 }
 
-export type AphorismCollection = AphorismEntity['collection'];
+export type SurfCollection = SurfEntity['collection'];
