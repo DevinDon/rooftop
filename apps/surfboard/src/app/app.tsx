@@ -2,22 +2,24 @@ import { ArrowRightIcon } from '@heroicons/react/outline';
 import { AppContainer } from '@iinfinity/components/app-container';
 import { useCallback, useState } from 'react';
 import tw from 'tailwind-styled-components';
-
-const Header = tw.div`
-
-`;
+import { HeadingComponent } from '@iinfinity/components/heading';
+import styled from 'styled-components';
 
 const Footer = tw.div`
 
 `;
 
 const Container = tw.div`
-  flex flex-col justify-center items-center
+  flex flex-col justify-center items-center flex-grow
   p-4
 `;
 
-const Logo = tw.div`
-  text-xl
+const StyledLogoFont = styled.div`
+  font-family: 'VT323', monospace;
+`;
+
+const Logo = tw(StyledLogoFont)`
+  text-6xl font-bold
 `;
 
 const Input = tw.input`
@@ -39,7 +41,7 @@ const Search = () => {
     window.location.href = `/surf/${encoded}`;
   }, [link]);
 
-  return <div className="max-w-2xl w-full box-border my-4 bg-white flex flex-row justify-between items-center rounded-full shadow hover:shadow-xl focus:shadow-xl transition transform">
+  return <div className="max-w-2xl w-full box-border my-6 bg-white flex flex-row justify-between items-center rounded-full shadow hover:shadow-xl focus:shadow-xl transition transform">
     <Input
       id="search"
       type="text"
@@ -57,7 +59,7 @@ const Search = () => {
 };
 
 export const App = () => <AppContainer>
-  <Header>Hello, surfboard!</Header>
+  <HeadingComponent title="冲浪板" subtitle="Surfboard" />
   <Container>
     <Logo>Surfboard</Logo>
     <Search />
