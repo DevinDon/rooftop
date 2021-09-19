@@ -8,13 +8,17 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:package",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/components",
             "tsConfig": "libs/components/tsconfig.lib.json",
             "project": "libs/components/package.json",
             "entryFile": "libs/components/src/index.ts",
-            "external": ["react/jsx-runtime"],
+            "external": [
+              "react/jsx-runtime"
+            ],
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
@@ -27,14 +31,20 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/components/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components"],
+          "outputs": [
+            "coverage/libs/components"
+          ],
           "options": {
             "jestConfig": "libs/components/jest.config.js",
             "passWithNoTests": true
@@ -57,7 +67,9 @@
         },
         "build-storybook": {
           "executor": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "uiFramework": "@storybook/react",
             "outputPath": "dist/storybook/components",
@@ -80,14 +92,18 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/rooftop",
             "index": "apps/rooftop/src/index.html",
             "main": "apps/rooftop/src/main.tsx",
             "polyfills": "apps/rooftop/src/polyfills.ts",
             "tsConfig": "apps/rooftop/tsconfig.app.json",
-            "assets": ["apps/rooftop/src/assets"],
+            "assets": [
+              "apps/rooftop/src/assets"
+            ],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -134,14 +150,20 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/rooftop/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/rooftop/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/rooftop"],
+          "outputs": [
+            "coverage/apps/rooftop"
+          ],
           "options": {
             "jestConfig": "apps/rooftop/jest.config.js",
             "passWithNoTests": true
@@ -169,9 +191,13 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/rooftop-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/rooftop-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -183,12 +209,16 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/surfboard-api",
             "main": "apps/surfboard-api/src/main.ts",
             "tsConfig": "apps/surfboard-api/tsconfig.app.json",
-            "assets": ["apps/surfboard-api/src/assets"]
+            "assets": [
+              "apps/surfboard-api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -200,7 +230,8 @@
                   "replace": "apps/surfboard-api/src/environments/environment.ts",
                   "with": "apps/surfboard-api/src/environments/environment.prod.ts"
                 }
-              ]
+              ],
+              "externalDependencies": "none"
             }
           }
         },
@@ -223,12 +254,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/surfboard-api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/surfboard-api/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/surfboard-api"],
+          "outputs": [
+            "coverage/apps/surfboard-api"
+          ],
           "options": {
             "jestConfig": "apps/surfboard-api/jest.config.js",
             "passWithNoTests": true
