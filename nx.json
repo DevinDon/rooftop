@@ -43,8 +43,15 @@
       "tags": [],
       "implicitDependencies": ["rooftop"]
     },
+    "surfboard": {
+      "tags": []
+    },
     "surfboard-api": {
       "tags": []
+    },
+    "surfboard-e2e": {
+      "tags": [],
+      "implicitDependencies": ["surfboard"]
     }
   }
 }

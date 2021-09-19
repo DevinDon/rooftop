@@ -32,7 +32,7 @@ const decode = (encoded: string) =>
     ).toString('utf-8'),
   );
 
-@View('surfs')
+@View('surf')
 export class SurfView extends BaseView {
 
   private entity: SurfEntity;

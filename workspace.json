@@ -202,6 +202,93 @@
         }
       }
     },
+    "surfboard": {
+      "root": "apps/surfboard",
+      "sourceRoot": "apps/surfboard/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/surfboard",
+            "index": "apps/surfboard/src/index.html",
+            "main": "apps/surfboard/src/main.tsx",
+            "polyfills": "apps/surfboard/src/polyfills.ts",
+            "tsConfig": "apps/surfboard/tsconfig.app.json",
+            "assets": [
+              "apps/surfboard/src/favicon.ico",
+              "apps/surfboard/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/surfboard/src/environments/environment.ts",
+                  "with": "apps/surfboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "surfboard:build",
+            "hmr": true,
+            "browserTarget": "surfboard:build:development",
+            "proxyConfig": "apps/surfboard/proxy.config.json"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "surfboard:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/surfboard/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/surfboard"
+          ],
+          "options": {
+            "jestConfig": "apps/surfboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "surfboard-api": {
       "root": "apps/surfboard-api",
       "projectType": "application",
@@ -267,6 +354,36 @@
           "options": {
             "jestConfig": "apps/surfboard-api/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "surfboard-e2e": {
+      "root": "apps/surfboard-e2e",
+      "sourceRoot": "apps/surfboard-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/surfboard-e2e/cypress.json",
+            "devServerTarget": "surfboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "surfboard:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/surfboard-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
