@@ -1,5 +1,6 @@
 import { ArrowRightIcon } from '@heroicons/react/outline';
 import { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import tw from 'tailwind-styled-components';
 
 const StyledContainer = tw.div`
@@ -10,7 +11,12 @@ const StyledContainer = tw.div`
   hover:shadow-xl focus:shadow-xl
 `;
 
-const StyledInput = tw.input`
+const StyledFontVF = styled.input`
+  font-family: 'VT323', monospace;
+  font-variant-ligatures: none;
+`;
+
+const StyledInput = tw(StyledFontVF)`
   flex-grow
   rounded-l-full py-4 px-6
   text-gray-700 leading-tight
