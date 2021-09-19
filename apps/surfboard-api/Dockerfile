@@ -33,6 +33,6 @@ ENV NODE_ENV=production \
 
 WORKDIR /app
 
-COPY ["./dist/apps/surfboard", "/app"]
+COPY ["./dist/apps/surfboard-api", "/app"]
 
 CMD ["node", "/app/main.js"]

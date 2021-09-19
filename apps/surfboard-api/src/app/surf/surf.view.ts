@@ -1,4 +1,13 @@
-import { BaseView, GET, PathQuery, PathVariable, requiredParams, ResourceResponse, ResterResponse, View } from '@rester/core';
+import {
+  BaseView,
+  GET,
+  PathQuery,
+  PathVariable,
+  requiredParams,
+  ResourceResponse,
+  ResterResponse,
+  View,
+} from '@rester/core';
 import { getEntity } from '@rester/orm';
 import { createHash } from 'crypto';
 import { createReadStream, existsSync, ReadStream } from 'fs';
@@ -9,15 +18,19 @@ import { SurfEntity } from './surf.entity';
 // create, remove, modify, take, search
 // one, more
 
-const encode = (url: string) => Buffer.from(encodeURI(url), 'utf-8')
-  .toString('base64')
-  .replace(/\+/g, '-')
-  .replace(/\//g, '_');
+const encode = (url: string) =>
+  Buffer.from(encodeURI(url), 'utf-8')
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
 
-const decode = (encoded: string) => decodeURI(
-  Buffer.from(encoded.replace(/-/g, '+').replace(/_/g, '/'), 'base64')
-    .toString('utf-8'),
-);
+const decode = (encoded: string) =>
+  decodeURI(
+    Buffer.from(
+      encoded.replace(/-/g, '+').replace(/_/g, '/'),
+      'base64',
+    ).toString('utf-8'),
+  );
 
 @View('surfs')
 export class SurfView extends BaseView {
@@ -50,7 +63,10 @@ export class SurfView extends BaseView {
     return path;
   }
 
-  async load(encoded: string, ext: '.html' | '.png'): Promise<ReadStream | null> {
+  async load(
+    encoded: string,
+    ext: '.html' | '.png',
+  ): Promise<ReadStream | null> {
     const hashext = createHash('sha1').update(encoded).digest('hex') + ext;
     if (this.cache.has(hashext)) {
       const path = this.cache.get(hashext);
@@ -60,17 +76,13 @@ export class SurfView extends BaseView {
   }
 
   @GET('encode')
-  async encode(
-    @PathQuery('url') url: string,
-  ) {
+  async encode(@PathQuery('url') url: string) {
     requiredParams({ url });
     return encode(url);
   }
 
   @GET('image/:encoded')
-  async fetchImage(
-    @PathVariable('encoded') encoded: string,
-  ) {
+  async fetchImage(@PathVariable('encoded') encoded: string) {
     const ext = '.png';
     const cache = await this.load(encoded, ext);
     if (cache) {
@@ -81,7 +93,8 @@ export class SurfView extends BaseView {
     }
     const url = decode(encoded);
     const page = await this.browser.newPage();
-    const image = await page.goto(url, { waitUntil: 'networkidle0' })
+    const image = await page
+      .goto(url, { waitUntil: 'networkidle0' })
       .then(response => response.buffer());
     this.save(encoded, ext, image);
     return new ResterResponse({
@@ -96,7 +109,7 @@ export class SurfView extends BaseView {
   async take(
     /** base64 encoded url */
     @PathVariable('encoded') encoded: string,
-    @PathQuery('type') type: 'text/html' | 'text/png' = 'text/html',
+    @PathQuery('type') type: 'text/html' | 'image/png' = 'text/html',
   ) {
     const ext = type === 'text/html' ? '.html' : '.png';
     const cache = await this.load(encoded, ext);
@@ -110,21 +123,22 @@ export class SurfView extends BaseView {
     const page = await this.browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle0' });
     await page.evaluate(() => {
-      document.querySelectorAll('img')
-        .forEach(element => {
-          element.src = `/surfs/image/${btoa(encodeURI(element.src)).replace(/\+/g, '-').replace(/\//g, '_')}`;
-        });
-      document.querySelectorAll('a')
-        .forEach(element => {
-          element.href = `/surfs/${btoa(encodeURI(element.href)).replace(/\+/g, '-').replace(/\//g, '_')}?type=text/html`;
-        });
-      document.querySelectorAll('script')
-        .forEach(element => {
-          element.remove();
-        });
+      document.querySelectorAll('img').forEach(element => {
+        element.src = `/surfs/image/${btoa(encodeURI(element.src))
+          .replace(/\+/g, '-')
+          .replace(/\//g, '_')}`;
+      });
+      document.querySelectorAll('a').forEach(element => {
+        element.href = `/surfs/${btoa(encodeURI(element.href))
+          .replace(/\+/g, '-')
+          .replace(/\//g, '_')}?type=text/html`;
+      });
+      document.querySelectorAll('script').forEach(element => {
+        element.remove();
+      });
     });
     const html = await page.content();
-    const image = await page.screenshot({ fullPage: true }) as Buffer;
+    const image = (await page.screenshot({ fullPage: true })) as Buffer;
     await page.close();
     this.save(encoded, '.html', html);
     this.save(encoded, '.png', image);

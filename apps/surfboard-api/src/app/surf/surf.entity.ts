@@ -1,10 +1,15 @@
 import { cleanify } from '@rester/core';
-import { Column, Entity, MongoEntity, ObjectId, PaginationParam } from '@rester/orm';
+import {
+  Column,
+  Entity,
+  MongoEntity,
+  ObjectId,
+  PaginationParam,
+} from '@rester/orm';
 import { Surf, SurfID, SurfInsertParams } from './surf.model';
 
 @Entity({ name: 'surf' })
 export class SurfEntity extends MongoEntity<Surf> implements Surf {
-
   @Column()
   _id: ObjectId;
 
@@ -24,7 +29,11 @@ export class SurfEntity extends MongoEntity<Surf> implements Surf {
   updatedAt: Date;
 
   async getRandomList({ take }: Pick<PaginationParam, 'take'>) {
-    return { list: await this.collection.aggregate([{ $sample: { size: take } }]).toArray() };
+    return {
+      list: await this.collection
+        .aggregate([{ $sample: { size: take } }])
+        .toArray(),
+    };
   }
 
   async insertOne(surf: SurfInsertParams) {
@@ -61,7 +70,6 @@ export class SurfEntity extends MongoEntity<Surf> implements Surf {
   async findOne(id: SurfID) {
     return this.collection.findOne({ _id: new ObjectId(id) });
   }
-
 }
 
 export type SurfCollection = SurfEntity['collection'];

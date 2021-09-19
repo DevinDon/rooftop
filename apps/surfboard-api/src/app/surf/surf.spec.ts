@@ -4,8 +4,11 @@ import { environment } from '../../environments/environment';
 import { SurfInsertParams, SurfUpdateParams } from './surf.model';
 
 describe('Surf View Test', () => {
-
-  const { addresses: { 0: { protocol, host, port } } } = loadResterConfig(environment.config);
+  const {
+    addresses: {
+      0: { protocol, host, port },
+    },
+  } = loadResterConfig(environment.config);
   const url = `${protocol}://${host}:${port}/surfs`;
   const variables = {
     existID: '',
@@ -51,7 +54,10 @@ describe('Surf View Test', () => {
   });
 
   it('should return 404 when PUT not exist surf', async () => {
-    const surf: SurfUpdateParams = { author: 'new author', content: 'new content' };
+    const surf: SurfUpdateParams = {
+      author: 'new author',
+      content: 'new content',
+    };
     const response = await fetch(`${url}/${variables.notExistID}`, {
       method: 'PUT',
       body: JSON.stringify(surf),
@@ -63,7 +69,10 @@ describe('Surf View Test', () => {
   });
 
   it('should return 200 when PUT exist surf', async () => {
-    const surf: SurfUpdateParams = { author: 'new author', content: 'new content' };
+    const surf: SurfUpdateParams = {
+      author: 'new author',
+      content: 'new content',
+    };
     const response = await fetch(`${url}/${variables.existID}`, {
       method: 'PUT',
       body: JSON.stringify(surf),
@@ -79,7 +88,9 @@ describe('Surf View Test', () => {
   });
 
   it('should return 200 when DELETE not exist surf', async () => {
-    const response = await fetch(`${url}/${variables.notExistID}`, { method: 'DELETE' });
+    const response = await fetch(`${url}/${variables.notExistID}`, {
+      method: 'DELETE',
+    });
     expect(response.status).toEqual(200);
     const result = await response.json();
     expect(result instanceof Array).toBeTruthy();
@@ -87,11 +98,12 @@ describe('Surf View Test', () => {
   });
 
   it('should return 200 when DELETE exist surf', async () => {
-    const response = await fetch(`${url}/${variables.existID}`, { method: 'DELETE' });
+    const response = await fetch(`${url}/${variables.existID}`, {
+      method: 'DELETE',
+    });
     expect(response.status).toEqual(200);
     const result = await response.json();
     expect(result instanceof Array).toBeTruthy();
     expect(result[0]).toEqual(variables.existID);
   });
-
 });

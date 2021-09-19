@@ -2,7 +2,6 @@ import { BaseModel } from '@rester/orm';
 import { IncomingHttpHeaders } from 'http';
 
 export interface Access extends BaseModel {
-
   method: string;
 
   path: string;
@@ -22,5 +21,4 @@ export interface Access extends BaseModel {
   statusMessage: string;
 
   length: number;
-
 }

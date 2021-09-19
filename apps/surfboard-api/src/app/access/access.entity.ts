@@ -4,7 +4,6 @@ import { Access } from './access.model';
 
 @Entity({ name: 'access' })
 export class AccessEntity extends MongoEntity<Access> implements Access {
-
   @Column()
   _id: ObjectId;
 
@@ -37,5 +36,4 @@ export class AccessEntity extends MongoEntity<Access> implements Access {
 
   @Column()
   length: number;
-
 }

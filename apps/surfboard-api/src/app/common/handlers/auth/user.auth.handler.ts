@@ -1,9 +1,11 @@
-import { BaseHandler, HTTP403Exception, parseTokenFromRequest } from '@rester/core';
+import {
+  BaseHandler,
+  HTTP403Exception,
+  parseTokenFromRequest,
+} from '@rester/core';
 
 export class UserAuthHandler extends BaseHandler {
-
   async handle(next: () => Promise<unknown>): Promise<unknown> {
-
     if (this.request.method?.toUpperCase() === 'OPTIONS') {
       return next();
     }
@@ -14,7 +16,5 @@ export class UserAuthHandler extends BaseHandler {
     }
 
     return next();
-
   }
-
 }

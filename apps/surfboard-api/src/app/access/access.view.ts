@@ -6,7 +6,6 @@ import { AccessEntity } from './access.entity';
 @View('access')
 @Handler(UserAuthHandler)
 export class AccessView extends BaseView {
-
   private entity: AccessEntity;
 
   async init() {
@@ -20,5 +19,4 @@ export class AccessView extends BaseView {
   ) {
     return this.entity.getPagination({ from, take });
   }
-
 }

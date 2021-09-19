@@ -3,7 +3,6 @@ import { getEntity } from '@rester/orm';
 import { AccessEntity } from '../../access/access.entity';
 
 export class AccessHandler extends BaseHandler {
-
   async handle(next: () => Promise<string>): Promise<unknown> {
     const result = await next();
 
@@ -20,11 +19,10 @@ export class AccessHandler extends BaseHandler {
       length: result ? result.length : 0,
     };
 
-    getEntity(AccessEntity).collection
-      .insertOne(access)
+    getEntity(AccessEntity)
+      .collection.insertOne(access)
       .catch(error => this.rester.logger.warn(`Record log failed: ${error}`));
 
     return result;
   }
-
 }

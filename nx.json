@@ -41,11 +41,9 @@
     },
     "rooftop-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "rooftop"
-      ]
+      "implicitDependencies": ["rooftop"]
     },
-    "surfboard": {
+    "surfboard-api": {
       "tags": []
     }
   }
