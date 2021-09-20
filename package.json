@@ -16,6 +16,7 @@
     "@heroicons/react": "^1.0.4",
     "@nrwl/cli": "12.9.0",
     "@nrwl/cypress": "^12.9.0",
+    "@nrwl/devkit": "12.9.0",
     "@nrwl/eslint-plugin-nx": "12.9.0",
     "@nrwl/jest": "^12.9.0",
     "@nrwl/linter": "12.9.0",
@@ -68,7 +69,8 @@
     "webpack-dev-server": "4.0.0-rc.0",
     "webpack-merge": "^5.8.0",
     "webpack-node-externals": "^3.0.0",
-    "webpack-sources": "^3.0.2"
+    "webpack-sources": "^3.0.2",
+    "zx": "^4.2.0"
   },
   "dependencies": {
     "@nrwl/node": "^12.9.0",
