@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "NODE_ENV=production nx run-many --target=build --all=true --parallel=true --maxParallel=4 --prod",
-    "build:rooftop": "NODE_ENV=production nx build rooftop --prod",
-    "test": "nx test"
+    "build": "NODE_ENV=production nx affected --target=build --all=true --parallel=false --prod",
+    "build:affected": "NODE_ENV=production nx affected --target=build --base=main --head=release --parallel=false --prod",
+    "ci-prepare": "npm i -g pnpm && pnpm i",
+    "release:new": "git fetch --prune && git checkout main && git pull -v && git branch -D release && git branch release && git checkout release"
   },
   "private": true,
   "devDependencies": {
