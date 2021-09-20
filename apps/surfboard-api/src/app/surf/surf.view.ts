@@ -13,24 +13,11 @@ import { createHash } from 'crypto';
 import { createReadStream, existsSync, ReadStream } from 'fs';
 import { mkdir, readdir, writeFile } from 'fs/promises';
 import { Browser, launch } from 'puppeteer';
+import { decode, encode } from '../common/utils';
 import { SurfEntity } from './surf.entity';
 
 // create, remove, modify, take, search
 // one, more
-
-const encode = (url: string) =>
-  Buffer.from(encodeURI(url), 'utf-8')
-    .toString('base64')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_');
-
-const decode = (encoded: string) =>
-  decodeURI(
-    Buffer.from(
-      encoded.replace(/-/g, '+').replace(/_/g, '/'),
-      'base64',
-    ).toString('utf-8'),
-  );
 
 @View('surf')
 export class SurfView extends BaseView {
