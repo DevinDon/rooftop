@@ -42,7 +42,14 @@ export class SurfView extends BaseView {
 
   async init() {
     this.entity = getEntity(SurfEntity);
-    this.browser = await launch({ headless: true, args: ['--no-sandbox'] });
+    this.browser = await launch({
+      headless: true,
+      args: ['--no-sandbox'],
+    }).catch(() => launch({
+      executablePath: '/usr/bin/chromium-browser',
+      headless: true,
+      args: ['--no-sandbox'],
+    }));
     this.cache = new Map();
     if (!existsSync('temp/surf')) {
       await mkdir('temp/surf', { recursive: true });
