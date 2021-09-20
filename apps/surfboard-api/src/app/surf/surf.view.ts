@@ -44,19 +44,19 @@ export class SurfView extends BaseView {
     this.entity = getEntity(SurfEntity);
     this.browser = await launch({ headless: true, args: ['--no-sandbox'] });
     this.cache = new Map();
-    if (!existsSync('temp/surfs')) {
-      await mkdir('temp/surfs', { recursive: true });
+    if (!existsSync('temp/surf')) {
+      await mkdir('temp/surf', { recursive: true });
     }
-    const list = await readdir('temp/surfs');
+    const list = await readdir('temp/surf');
     for (const item of list) {
-      this.cache.set(item, 'temp/surfs/' + item);
+      this.cache.set(item, 'temp/surf/' + item);
     }
     this.logger.debug('cache total:', this.cache.size);
   }
 
   async save(encoded: string, ext: '.html' | '.png', content: string | Buffer) {
     const hashext = createHash('sha1').update(encoded).digest('hex') + ext;
-    const path = `temp/surfs/${hashext}`;
+    const path = `temp/surf/${hashext}`;
     await writeFile(path, content);
     this.cache.set(hashext, path);
     this.logger.debug('cache total:', this.cache.size);
@@ -109,14 +109,15 @@ export class SurfView extends BaseView {
   async take(
     /** base64 encoded url */
     @PathVariable('encoded') encoded: string,
-    @PathQuery('type') type: 'text/html' | 'image/png' = 'text/html',
+    @PathQuery('type') type: 'html' | 'preview' = 'html',
+    @PathQuery('disable-js') disableJs: boolean = true,
   ) {
-    const ext = type === 'text/html' ? '.html' : '.png';
+    const ext = type === 'html' ? '.html' : '.png';
     const cache = await this.load(encoded, ext);
     if (cache) {
       return new ResourceResponse({
         file: cache,
-        type,
+        type: type === 'html' ? 'text/html' : 'image/png',
       });
     }
     const url = decode(encoded);
@@ -124,28 +125,36 @@ export class SurfView extends BaseView {
     await page.goto(url, { waitUntil: 'networkidle0' });
     await page.evaluate(() => {
       document.querySelectorAll('img').forEach(element => {
-        element.src = `/surfs/image/${btoa(encodeURI(element.src))
+        if (element.src.includes('data:image/')) {
+          return;
+        }
+        element.src = `/surf/image/${btoa(encodeURI(element.src))
           .replace(/\+/g, '-')
           .replace(/\//g, '_')}`;
       });
       document.querySelectorAll('a').forEach(element => {
-        element.href = `/surfs/${btoa(encodeURI(element.href))
+        element.href = `/surf/${btoa(encodeURI(element.href))
           .replace(/\+/g, '-')
-          .replace(/\//g, '_')}?type=text/html`;
-      });
-      document.querySelectorAll('script').forEach(element => {
-        element.remove();
+          .replace(/\//g, '_')}`;
       });
     });
-    const html = await page.content();
+    if (disableJs) {
+      await page.evaluate(() => {
+        document.querySelectorAll('script').forEach(element => {
+          element.remove();
+        });
+      });
+    }
+    await page.waitForTimeout(2000);
     const image = (await page.screenshot({ fullPage: true })) as Buffer;
+    const html = await page.content();
     await page.close();
     this.save(encoded, '.html', html);
     this.save(encoded, '.png', image);
     return new ResterResponse({
-      data: type === 'text/html' ? html : image,
+      data: type === 'html' ? html : image,
       headers: {
-        'Content-Type': type,
+        'Content-Type': type === 'html' ? 'text/html' : 'image/png',
       },
     });
   }
