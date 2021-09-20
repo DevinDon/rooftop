@@ -31,8 +31,12 @@ ENV NODE_ENV=production \
   RESTER_LOGGER_LOGOUT=${SET_LOGGER_LOGOUT} \
   RESTER_LOGGER_LOGERR=${SET_LOGGER_LOGERR}
 
-WORKDIR /app
+RUN apk add --no-cache \
+  udev \
+  ttf-freefont \
+  chromium
 
+WORKDIR /app
 COPY ["./dist/apps/surfboard-api", "/app"]
 
 CMD ["node", "/app/main.js"]
