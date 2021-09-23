@@ -37,6 +37,17 @@ export class SurfView extends BaseView {
       headless: true,
       args: ['--no-sandbox'],
     }));
+    setInterval(async () => {
+      await this.browser.close();
+      this.browser = await launch({
+        headless: true,
+        args: ['--no-sandbox'],
+      }).catch(() => launch({
+        executablePath: '/usr/bin/chromium-browser',
+        headless: true,
+        args: ['--no-sandbox'],
+      }));
+    }, 10 * 60 * 1000);
     this.cache = new Map();
     if (!existsSync('temp/surf')) {
       await mkdir('temp/surf', { recursive: true });
@@ -139,9 +150,8 @@ export class SurfView extends BaseView {
         });
       });
     }
-    await page.waitForTimeout(2000);
-    const image = (await page.screenshot({ fullPage: true })) as Buffer;
     const html = await page.content();
+    const image = (await page.screenshot({ fullPage: true })) as Buffer;
     await page.close();
     this.save(encoded, '.html', html);
     this.save(encoded, '.png', image);
