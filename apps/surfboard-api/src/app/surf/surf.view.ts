@@ -87,6 +87,7 @@ export class SurfView extends BaseView {
     }
     const url = decode(encoded);
     const page = await this.browser.newPage();
+    page.setDefaultTimeout(10 * 1000);
     const image = await page
       .goto(url, { waitUntil: 'networkidle0' })
       .then(response => response.buffer());
