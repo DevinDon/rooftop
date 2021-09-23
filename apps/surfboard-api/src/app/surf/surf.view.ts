@@ -37,17 +37,6 @@ export class SurfView extends BaseView {
       headless: true,
       args: ['--no-sandbox'],
     }));
-    setInterval(async () => {
-      await this.browser.close();
-      this.browser = await launch({
-        headless: true,
-        args: ['--no-sandbox'],
-      }).catch(() => launch({
-        executablePath: '/usr/bin/chromium-browser',
-        headless: true,
-        args: ['--no-sandbox'],
-      }));
-    }, 10 * 60 * 1000);
     this.cache = new Map();
     if (!existsSync('temp/surf')) {
       await mkdir('temp/surf', { recursive: true });
@@ -101,7 +90,8 @@ export class SurfView extends BaseView {
     const image = await page
       .goto(url, { waitUntil: 'networkidle0' })
       .then(response => response.buffer());
-    this.save(encoded, ext, image);
+    this.save(encoded, ext, image)
+      .then(() => page.close());
     return new ResterResponse({
       data: image,
       headers: {
