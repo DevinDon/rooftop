@@ -88,6 +88,7 @@ export class SurfView extends BaseView {
     const url = decode(encoded);
     const page = await this.browser.newPage();
     page.setDefaultTimeout(10 * 1000);
+    page.on('error', () => page.close());
     const image = await page
       .goto(url, { waitUntil: 'networkidle0' })
       .then(response => response.buffer());
@@ -118,6 +119,8 @@ export class SurfView extends BaseView {
     }
     const url = decode(encoded);
     const page = await this.browser.newPage();
+    page.setDefaultTimeout(10 * 1000);
+    page.on('error', () => page.close());
     await page.goto(url, { waitUntil: 'networkidle0' });
     await page.evaluate(() => {
       document.querySelectorAll('img').forEach(element => {
