@@ -16,14 +16,14 @@
         "external": [
           "react/jsx-runtime"
         ],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "assets": [
           {
             "glob": "libs/components/README.md",
             "input": ".",
             "output": "."
           }
-        ]
+        ],
+        "webpackConfig": "webpack.config.js"
       }
     },
     "lint": {
