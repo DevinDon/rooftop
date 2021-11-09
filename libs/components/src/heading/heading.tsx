@@ -24,18 +24,20 @@ const StyledHeading = tw.div`
 const StyledTitle = tw.h1`
   font-bold text-2xl
   flex-shrink-0
+  my-0
   truncate
 `;
 
 const StyledSubtitle = tw.h2`
   text-base text-yellow-500
   flex-shrink
+  my-0
   truncate
 `;
 
 export const HeadingComponent = ({ title, subtitle }: Props) => <StyledHeading>
   <StyledIconLink
-    className="w-8 h-8"
+    className="h-8 w-8"
     href="/"
     title="返回主页"
     rel="noopener noreferrer"
@@ -46,7 +48,7 @@ export const HeadingComponent = ({ title, subtitle }: Props) => <StyledHeading>
   <StyledSubtitle>{subtitle}</StyledSubtitle>
   <div className="flex-grow" />
   <StyledIconLink
-    className="w-6 h-6"
+    className="h-6 w-6"
     href="https://github.com/devindon"
     target="_blank"
     rel="noopener noreferrer"
