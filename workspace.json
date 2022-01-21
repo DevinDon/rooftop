@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "rooftop": "apps/rooftop",
+    "rooftop-e2e": "apps/rooftop-e2e"
+  }
 }
