@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "rooftop": "apps/rooftop",
-    "rooftop-e2e": "apps/rooftop-e2e"
+    "rooftop-e2e": "apps/rooftop-e2e",
+    "surfboard": "apps/surfboard",
+    "surfboard-e2e": "apps/surfboard-e2e"
   }
 }
