@@ -44,8 +44,8 @@ specifiers:
   eslint-plugin-cypress: ^2.10.3
   eslint-plugin-import: 2.25.2
   eslint-plugin-jsx-a11y: 6.5.1
-  eslint-plugin-react: 7.27.0
-  eslint-plugin-react-hooks: 4.2.0
+  eslint-plugin-react: 7.28.0
+  eslint-plugin-react-hooks: 4.2.1-rc.0-next-e12a9dfc9-20220120
   jest: 27.2.3
   postcss: ^8.4.5
   prettier: ^2.3.1
@@ -119,8 +119,8 @@ devDependencies:
   eslint-plugin-cypress: 2.12.1_eslint@8.7.0
   eslint-plugin-import: 2.25.2_eslint@8.7.0
   eslint-plugin-jsx-a11y: 6.5.1_eslint@8.7.0
-  eslint-plugin-react: 7.27.0_eslint@8.7.0
-  eslint-plugin-react-hooks: 4.2.0_eslint@8.7.0
+  eslint-plugin-react: 7.28.0_eslint@8.7.0
+  eslint-plugin-react-hooks: 4.2.1-rc.0-next-e12a9dfc9-20220120_eslint@8.7.0
   jest: 27.2.3
   postcss: 8.4.5
   prettier: 2.5.1
@@ -9057,11 +9057,11 @@ packages:
       minimatch: 3.0.4
     dev: true
 
-  /eslint-plugin-react-hooks/4.2.0_eslint@8.7.0:
-    resolution: {integrity: sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==}
+  /eslint-plugin-react-hooks/4.2.1-rc.0-next-e12a9dfc9-20220120_eslint@8.7.0:
+    resolution: {integrity: sha512-gLtLigGzWBvbk3Q5QGiouXYfLIMA/EBHDnrfRBdJdg6+tmWJs9F69RbhFuslLHV8UZBE+1wr51aVSzpZ7ojZ+A==}
     engines: {node: '>=10'}
     peerDependencies:
-      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
     dependencies:
       eslint: 8.7.0
     dev: true
@@ -9073,29 +9073,6 @@ packages:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
     dependencies:
       eslint: 8.7.0
-    dev: true
-
-  /eslint-plugin-react/7.27.0_eslint@8.7.0:
-    resolution: {integrity: sha512-0Ut+CkzpppgFtoIhdzi2LpdpxxBvgFf99eFqWxJnUrO7mMe0eOiNpou6rvNYeVVV6lWZvTah0BFne7k5xHjARg==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-    dependencies:
-      array-includes: 3.1.4
-      array.prototype.flatmap: 1.2.5
-      doctrine: 2.1.0
-      eslint: 8.7.0
-      estraverse: 5.3.0
-      jsx-ast-utils: 3.2.1
-      minimatch: 3.0.4
-      object.entries: 1.1.5
-      object.fromentries: 2.0.5
-      object.hasown: 1.1.0
-      object.values: 1.1.5
-      prop-types: 15.8.1
-      resolve: 2.0.0-next.3
-      semver: 6.3.0
-      string.prototype.matchall: 4.0.6
     dev: true
 
   /eslint-plugin-react/7.28.0_eslint@8.7.0:
