@@ -1,9 +1,11 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
 import { AboutComponent } from './about/about';
 import { FooterComponent } from './components/footer';
 import { HeaderComponent } from './components/header';
+import { NotFoundComponent } from './components/notfound';
 import { HomeComponent } from './home/home';
+import { SurfComponent } from './surf/surf';
 
 const TailwindApp = tw.div`
   flex flex-col
@@ -22,9 +24,12 @@ export const App = () => {
     <HeaderComponent>Surfboard</HeaderComponent>
 
     <TailwindBody>
-      <Route path="/" exact component={() => <HomeComponent />} />
-      <Route path="/about" component={() => <AboutComponent />} />
-      {/* <Route path="/surf/:path" exact component={() => <SurfComponent />} /> */}
+      <Switch>
+        <Route path="/" exact component={() => <HomeComponent />} />
+        <Route path="/about" component={() => <AboutComponent />} />
+        <Route path="/surf/:path" exact component={() => <SurfComponent />} />
+        <Route path="*" component={() => <NotFoundComponent />} />
+      </Switch>
     </TailwindBody>
 
     <FooterComponent />

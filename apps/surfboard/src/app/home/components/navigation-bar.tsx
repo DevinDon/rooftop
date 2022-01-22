@@ -2,6 +2,7 @@ import { ArrowRightIcon, BanIcon } from '@heroicons/react/outline';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'tailwind-styled-components';
+import { encodeSafeBase64 } from '../../utils';
 
 const TailwindContainer = tw.div`
   flex flex-row justify-between items-center
@@ -33,7 +34,7 @@ const TailwindButton = tw.button`
   ${props => props.disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-400 shadow'}
 `;
 
-const URL_REG = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/;
+const URL_REG = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?)+(\.[a-z]{2,6}\/)?/;
 
 export const NavigationBarComponent = () => {
 
@@ -42,9 +43,7 @@ export const NavigationBarComponent = () => {
 
   const surf = useCallback(() => {
     if (invalid) { return; }
-    const encoded = btoa(encodeURI(link))
-      .replace(/\//g, '_')
-      .replace(/\+/g, '-');
+    const encoded = encodeSafeBase64(link);
     window.location.href = `/surf/${encoded}`;
   }, [link, invalid]);
 
