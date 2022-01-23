@@ -1,0 +1,47 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "../..",
+    "outDir": "../../dist",
+    "baseUrl": "../..",
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "strict": true,
+    "allowJs": false,
+    "target": "ES2020",
+    "module": "ES2020",
+    "lib": [
+      "DOM",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "ES2021",
+      "ESNext"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
+  },
+  "files": [],
+  "include": [],
+  "exclude": [
+    "../../node_modules",
+    "../../dist",
+    "../../tmp",
+    "../../temp"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

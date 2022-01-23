@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/@prisma/client/generated/surfboard-api"
+}
+
+generator docs {
+  provider = "node ../../node_modules/prisma-docs-generator"
+  output   = "../../../node_modules/@prisma/client/generated/surfboard-api/docs"
+}
+
+datasource postgresql {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Aphorism {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime @updatedAt
+  content   String   @postgresql.VarChar(32)
+  published Boolean  @default(false)
+}
