@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "compiler": "swc",
@@ -44,7 +46,9 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "surfboard:build",
-        "hmr": true
+        "hmr": true,
+        "browserTarget": "surfboard-api:build:development",
+        "proxyConfig": "apps/surfboard/proxy.config.json"
       },
       "configurations": {
         "production": {
@@ -55,14 +59,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/surfboard/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/surfboard/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/surfboard"],
+      "outputs": [
+        "coverage/apps/surfboard"
+      ],
       "options": {
         "jestConfig": "apps/surfboard/jest.config.js",
         "passWithNoTests": true
@@ -85,7 +95,9 @@
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "uiFramework": "@storybook/react",
         "outputPath": "dist/storybook/surfboard",

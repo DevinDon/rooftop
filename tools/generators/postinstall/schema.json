@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "postinstall",
+  "type": "object",
+  "properties": {
+    "build-tools": {
+      "type": "boolean",
+      "description": "Should build tools"
+    }
+  },
+  "required": []
+}

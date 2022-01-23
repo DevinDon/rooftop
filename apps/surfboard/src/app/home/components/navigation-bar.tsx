@@ -34,7 +34,7 @@ const TailwindButton = tw.button`
   ${props => props.disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-400 shadow'}
 `;
 
-const URL_REG = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?)+(\.[a-z]{2,6}\/)?/;
+const URL_REG = /^(((ht|f)tps?):\/\/)([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?)+(\.[a-z]{2,6}\/)?/;
 
 export const NavigationBarComponent = () => {
 

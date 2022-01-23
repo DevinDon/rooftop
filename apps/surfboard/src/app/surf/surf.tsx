@@ -15,7 +15,7 @@ export const SurfComponent = (args: ArgsOfSurfComponent) => {
 
   return <TailwindSurf
     title={`Surfboard: ${url}`}
-    src={`api/surf/${path}`}
+    src={`${window.location.origin}/api/surf/${path}`}
   />;
 
 };
