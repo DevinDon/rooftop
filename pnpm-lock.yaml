@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.16.10
   '@babel/preset-env': ^7.16.11
   '@babel/preset-typescript': 7.12.13
+  '@headlessui/react': ^1.4.3
   '@heroicons/react': ^1.0.5
   '@nrwl/cli': 13.4.6
   '@nrwl/cypress': 13.4.6
@@ -18,10 +19,10 @@ specifiers:
   '@nrwl/web': 13.4.6
   '@nrwl/workspace': 13.4.6
   '@prisma/client': ^3.8.1
-  '@rester/core': ~0.22.0-202201231812
-  '@rester/eslint-config': ~0.22.0-202201231812
-  '@rester/logger': ~0.22.0-202201231812
-  '@rester/nx': ^0.22.0-202201231812
+  '@rester/core': ~0.22.0-202201281659
+  '@rester/eslint-config': ~0.22.0-202201281659
+  '@rester/logger': ~0.22.0-202201281659
+  '@rester/nx': ^0.22.0-202201281659
   '@sinclair/typebox': ~0.23.2
   '@storybook/addon-essentials': ~6.4.12
   '@storybook/builder-webpack5': ~6.4.12
@@ -86,10 +87,11 @@ specifiers:
   zx: ^4.2.0
 
 dependencies:
+  '@headlessui/react': 1.4.3_react-dom@17.0.2+react@17.0.2
   '@heroicons/react': 1.0.5_react@17.0.2
   '@prisma/client': 3.8.1_prisma@3.8.1
-  '@rester/core': 0.22.0-202201231812
-  '@rester/logger': 0.22.0-202201231812
+  '@rester/core': 0.22.0-202201281659
+  '@rester/logger': 0.22.0-202201281659
   '@sinclair/typebox': 0.23.3
   ajv: 8.9.0
   ajv-formats: 2.1.1
@@ -122,8 +124,8 @@ devDependencies:
   '@nrwl/tao': 13.4.6
   '@nrwl/web': 13.4.6_677fb08e8b576a1378fc1f2bf04023a2
   '@nrwl/workspace': 13.4.6_a6f83e1a413a4972bacf57ffd127b66d
-  '@rester/eslint-config': 0.22.0-202201231812
-  '@rester/nx': 0.22.0-202201231812
+  '@rester/eslint-config': 0.22.0-202201281659
+  '@rester/nx': 0.22.0-202201281659
   '@storybook/addon-essentials': 6.4.13_57632c53afc1425a65e01d948c554301
   '@storybook/builder-webpack5': 6.4.13_d39ce4a873cdc6f686b1456b303e37d1
   '@storybook/manager-webpack5': 6.4.13_d39ce4a873cdc6f686b1456b303e37d1
@@ -1855,6 +1857,17 @@ packages:
     resolution: {integrity: sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==}
     dev: true
 
+  /@headlessui/react/1.4.3_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-n2IQkaaw0aAAlQS5MEXsM4uRK+w18CrM72EqnGRl/UBOQeQajad8oiKXR9Nk15jOzTFQjpxzrZMf1NxHidFBiw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /@heroicons/react/1.0.5_react@17.0.2:
     resolution: {integrity: sha512-UDMyLM2KavIu2vlWfMspapw9yii7aoLwzI2Hudx4fyoPwfKfxU8r3cL8dEBXOjcLG0/oOONZzbT14M1HoNtEcg==}
     peerDependencies:
@@ -3323,25 +3336,25 @@ packages:
       - supports-color
     dev: true
 
-  /@rester/core/0.22.0-202201231812:
-    resolution: {integrity: sha512-Qk4KodMdFFBTbCZIy0IDqbaR5fLbetVdDi1tJ7mPsAdxcwP5AmKzEk3cLUiDVWma4FeXT5PKyaxhvE8ANVj9gw==}
+  /@rester/core/0.22.0-202201281659:
+    resolution: {integrity: sha512-UNwH+FWVS40G86FRbpGD4d/hF71J33nEcUFjbIwDk0MwXB22TXUbjtTH5DIl1DwzEQknbHL/DeAqtFHcMLTg1A==}
     dependencies:
-      '@rester/logger': 0.22.0-202201231812
+      '@rester/logger': 0.22.0-202201281659
       cross-fetch: 3.1.5
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@rester/eslint-config/0.22.0-202201231812:
-    resolution: {integrity: sha512-Y0XSO7Ixp6TVjeLPb1oQxsLj9p9iI8ndsplUdKwP9wyCQ3W3i7bJmwKZ7DAwlZTr0wfaRL4ABCcyYMbwgo3v1w==}
+  /@rester/eslint-config/0.22.0-202201281659:
+    resolution: {integrity: sha512-mFJUAoe6CrTpfcAkvnw58s0PE7khk+FHDWe5n3zn2dPvhsAuEF0nkaLWmEb/rgpQJjlU8c1nPBqlEZsHXFbVXA==}
     dev: true
 
-  /@rester/logger/0.22.0-202201231812:
-    resolution: {integrity: sha512-/fs7XMsSoQPSs9MwVc06imdDjs8TdC4LVP/2oCYYwKyGIhJwyKRt7R1fhffQy1ts8sKFlYT9hdluNF+XRxkE8Q==}
+  /@rester/logger/0.22.0-202201281659:
+    resolution: {integrity: sha512-TR0ul3sFGiayoLI2c74qbfFpqxOEuxMHFn7WJ2ykvRkWjkmBtEQIw9RC3g8ARMEn0gfo8g8vZanNVarOZfwLaQ==}
     dev: false
 
-  /@rester/nx/0.22.0-202201231812:
-    resolution: {integrity: sha512-z8fZ40UQRPwQdKPx6SRvoJQ267STmdoh2QbcLm3XO8jP/n9AqdRED1FiMQWHLnacHxc557u5rYohjtrzAD5Sng==}
+  /@rester/nx/0.22.0-202201281659:
+    resolution: {integrity: sha512-IwE4BG0b+U55mH9185jzOCI5WfDLhPXmpXfzk533UODPUp9sfhw5KuIEPR+rlEWzxw0Tq/3FxlAjeQWCAQ+KKA==}
     dependencies:
       '@nrwl/devkit': 13.4.5
       esbuild: 0.14.13

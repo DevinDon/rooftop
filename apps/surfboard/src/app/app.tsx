@@ -1,11 +1,8 @@
-import { Route, Switch } from 'react-router-dom';
+import { Transition } from '@headlessui/react';
 import tw from 'tailwind-styled-components';
-import { AboutComponent } from './about/about';
 import { FooterComponent } from './components/footer';
 import { HeaderComponent } from './components/header';
-import { NotFoundComponent } from './components/notfound';
-import { HomeComponent } from './home/home';
-import { SurfComponent } from './surf/surf';
+import { AppRouter } from './router';
 
 const TailwindApp = tw.div`
   flex flex-col
@@ -13,27 +10,34 @@ const TailwindApp = tw.div`
 `;
 
 const TailwindBody = tw.div`
+  relative
   flex flex-col flex-grow
-  px-4
+  mx-4
 `;
 
 export const App = () => {
 
-  return <TailwindApp>
+  return <Transition
+    appear={true}
+    show={true}
+    enter='transition-all ease-in-out duration-1000 delay-150'
+    enterFrom='opacity-0 scale-110'
+    enterTo='opacity-100 scale-100'
+    leave='transition-all ease-in-out duration-1000 delay-150'
+    leaveFrom='opacity-100 scale-100'
+    leaveTo='opacity-0 scale-90'
+  >
+    <TailwindApp>
 
-    <HeaderComponent>Surfboard</HeaderComponent>
+      <HeaderComponent />
 
-    <TailwindBody>
-      <Switch>
-        <Route path="/" exact component={() => <HomeComponent />} />
-        <Route path="/about" component={() => <AboutComponent />} />
-        <Route path="/surf/:path" exact component={() => <SurfComponent />} />
-        <Route path="*" component={() => <NotFoundComponent />} />
-      </Switch>
-    </TailwindBody>
+      <TailwindBody>
+        <AppRouter />
+      </TailwindBody>
 
-    <FooterComponent />
+      <FooterComponent />
 
-  </TailwindApp>;
+    </TailwindApp>
+  </Transition>;
 
 };

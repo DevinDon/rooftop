@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
 
 const TailwindNotFound = tw.div`
@@ -9,8 +9,8 @@ export type ArgsOfNotFoundComponent = {};
 
 export const NotFoundComponent = (args: ArgsOfNotFoundComponent) => {
 
-  const { 0: path } = useParams<{ 0: string; }>();
+  const location = useLocation();
 
-  return <TailwindNotFound>{`Unknown Path: ${path}`}</TailwindNotFound>;
+  return <TailwindNotFound>{`Unknown Path: ${location.pathname}`}</TailwindNotFound>;
 
 };

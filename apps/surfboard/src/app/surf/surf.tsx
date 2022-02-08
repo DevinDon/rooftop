@@ -10,12 +10,17 @@ export type ArgsOfSurfComponent = {};
 
 export const SurfComponent = (args: ArgsOfSurfComponent) => {
 
-  const { path } = useParams<{ path: string; }>();
-  const url = decodeSafeBase64(path);
+  const { id } = useParams<{ id: string; }>();
+
+  if (!id) {
+    return <div>Not found id</div>;
+  }
+
+  const url = decodeSafeBase64(id);
 
   return <TailwindSurf
     title={`Surfboard: ${url}`}
-    src={`${window.location.origin}/api/surf/${path}`}
+    src={`${window.location.origin}/api/surf/${id}`}
   />;
 
 };
