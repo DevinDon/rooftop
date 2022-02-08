@@ -1,10 +1,11 @@
 {
   "version": 2,
   "projects": {
+    "components": "libs/components",
     "rooftop": "apps/rooftop",
     "rooftop-e2e": "apps/rooftop-e2e",
     "surfboard": "apps/surfboard",
-    "surfboard-e2e": "apps/surfboard-e2e",
-    "surfboard-api": "apps/surfboard-api"
+    "surfboard-api": "apps/surfboard-api",
+    "surfboard-e2e": "apps/surfboard-e2e"
   }
 }

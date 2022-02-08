@@ -1,8 +1,11 @@
 import { Transition } from '@headlessui/react';
+import { TransitionRouter } from '@rooftop/components';
 import tw from 'tailwind-styled-components';
+import { AboutComponent } from './about/about';
 import { FooterComponent } from './components/footer';
 import { HeaderComponent } from './components/header';
-import { AppRouter } from './router';
+import { HomeComponent } from './home/home';
+import { SurfComponent } from './surf/surf';
 
 const TailwindApp = tw.div`
   flex flex-col
@@ -32,7 +35,12 @@ export const App = () => {
       <HeaderComponent />
 
       <TailwindBody>
-        <AppRouter />
+        <TransitionRouter routes={[
+          { path: '/', exact: true, component: HomeComponent },
+          { path: '/about', exact: true, component: AboutComponent },
+          { path: '/surf/:id', exact: true, component: SurfComponent },
+          // { path: '*', exact: true, component: NotFoundComponent },
+        ]} />
       </TailwindBody>
 
       <FooterComponent />

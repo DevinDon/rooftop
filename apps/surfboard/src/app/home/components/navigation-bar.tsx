@@ -53,14 +53,14 @@ export const NavigationBarComponent = () => {
 
   return <TailwindContainer>
     <TailwindInput
-      id="navigate"
-      type="text"
-      placeholder="Enter URL to surf"
+      id='navigate'
+      type='text'
+      placeholder='Enter URL to surf'
       onInput={e => setLink(e.currentTarget.value)}
       value={link}
       onKeyDown={({ key }) => key.toLowerCase() === 'enter' && surf()}
     />
-    <div className="p-2 flex-shrink">
+    <div className='p-2 flex-shrink'>
       <TailwindButton disabled={invalid} onClick={surf}>
         {invalid ? <BanIcon /> : <ArrowRightIcon />}
       </TailwindButton>
