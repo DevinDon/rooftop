@@ -5,7 +5,6 @@
     "rooftop": "apps/rooftop",
     "rooftop-e2e": "apps/rooftop-e2e",
     "surfboard": "apps/surfboard",
-    "surfboard-api": "apps/surfboard-api",
     "surfboard-e2e": "apps/surfboard-e2e"
   }
 }

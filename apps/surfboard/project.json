@@ -46,9 +46,7 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "surfboard:build",
-        "hmr": true,
-        "browserTarget": "surfboard-api:build:development",
-        "proxyConfig": "apps/surfboard/proxy.config.json"
+        "hmr": true
       },
       "configurations": {
         "production": {
