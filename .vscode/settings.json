@@ -1,15 +1,16 @@
 {
   "tailwindCSS.includeLanguages": {
     "typescript": "javascript", // if you are using typescript
-    "typescriptreact": "javascript", // if you are using typescript with react
+    "typescriptreact": "javascript" // if you are using typescript with react
   },
   "editor.quickSuggestions": {
-    "strings": true, // forces VS Code to trigger completions when editing "string" content
+    "strings": true // forces VS Code to trigger completions when editing "string" content
   },
   "tailwindCSS.experimental.classRegex": [
     "tw`([^`]*)", // tw`...`
     "tw\\.[^`]+`([^`]*)`", // tw.xxx<xxx>`...`
-    "tw\\(.*?\\).*?`([^`]*)", // tw(Component)<xxx>`...`
+    "tw\\(.*?\\).*?`([^`]*)" // tw(Component)<xxx>`...`
   ],
   "editor.tabSize": 2,
+  "editor.formatOnSave": true
 }
