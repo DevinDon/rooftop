@@ -1,14 +1,9 @@
 import { Capturer, Schema, useJsonRequestBody, type Handler, type Router } from '@rester/core';
-import { createReadStream, createWriteStream } from 'fs';
-import { mConverter, mDownloader, mIndicator, mParser } from 'node-m3u8-to-mp4';
-import { join, resolve } from 'path';
-import fetch from 'node-fetch';
-import { $ } from 'zx';
-import { writeFile } from 'fs/promises';
-import { chromium, Browser } from 'playwright';
 import { Type } from '@sinclair/typebox';
-import { STDNUL } from '@rester/logger';
-import EventEmitter from 'events';
+import { createWriteStream } from 'fs';
+import { resolve } from 'path';
+import { Browser, chromium } from 'playwright';
+import { $ } from 'zx';
 
 export const routerOfPostTask: Router = {
   location: {
@@ -46,11 +41,6 @@ export const PostTask: Handler =
 export const Process: Handler<{ url: string; }> =
   async ({ url }, { logger }) => {
 
-    // // const url = 'https://www.nunuyy1.top/dianying/96920.html';
-    // // const url = 'https://gk.lka.hu/old2/html5/';
-    // const url = 'http://localhost:3000/src/content/capture/video-video/';
-    // // const url = 'https://www.nunuyy1.top/dianying/96920.html';
-
     const browser = await getBrowser();
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -64,71 +54,83 @@ export const Process: Handler<{ url: string; }> =
     await page.waitForLoadState('domcontentloaded');
     await page.waitForSelector('video');
 
-    const emitter = new EventEmitter();
-    emitter.on('progress', (progress: number) => logger.debug(`recording progress: ${(progress * 100).toFixed(2).padStart(6, ' ')}%`));
+    const binaryPath = resolve('.', 'temp', `${await page.title()}.binary`);
+    const savedPath = resolve('.', 'temp', `${await page.title()}.webm`);
 
-    await page.exposeFunction('setProgress', (percentage: number) => emitter.emit('progress', percentage));
+    const binaryStream = createWriteStream(binaryPath);
 
+    // 显示进度条
+    await page.exposeFunction('setProgress', (percentage: number) => {
+      logger.debug(`recording progress: ${(percentage * 100).toFixed(2).padStart(6, ' ')}%`);
+    });
+    // 将数据写入文件，避免内存溢出
+    await page.exposeFunction('setData', (data: string) => {
+      logger.debug(`writing data: ${(data.length / 1024).toFixed(2)}KB`);
+      binaryStream.write(data, 'binary');
+    });
+    // 录制完毕
+    await page.exposeFunction('setEnd', () => {
+      logger.debug('recording end');
+      binaryStream.end();
+    });
+
+    // 返回文件大小，单位 B
     const size = await page.evaluate<number>(
       async () => new Promise(resolve => {
 
         const setProgress = (window as any).setProgress;
+        const setData = (window as any).setData;
+        const setEnd = (window as any).setEnd;
+
+        const ab2str = (ab: ArrayBuffer) => new Uint8Array(ab)
+          .reduce((str, byte) => str + String.fromCharCode(byte), '');
 
         const element = document.getElementsByTagName('video')[0] as HTMLVideoMediaElement;
 
         const storage = {
           stream: null as unknown as MediaStream,
           recorder: null as unknown as MediaRecorder,
-          chunks: [] as Blob[],
-          start: null as unknown as number,
+          timer: null as unknown as NodeJS.Timeout,
+          size: 0,
         };
 
-        element.addEventListener('play', () => {
-          storage.stream = element.captureStream();
-          storage.recorder = new MediaRecorder(storage.stream, { mimeType: 'video/webm; codecs=vp9' });
-          storage.recorder.ondataavailable = e => e.data.size > 0 && storage.chunks.push(e.data);
+        // 使用 onplaying 时间，使 tracks 准备就绪后再开始录制
+        element.onplaying = () => {
+          // 重设 onplaying 事件，防止多次触发
+          element.onplaying = null;
+          storage.stream = element.captureStream(60);
+          storage.recorder = new MediaRecorder(storage.stream, { mimeType: 'video/webm; codecs=vp9,opus' });
+          storage.recorder.ondataavailable = async e => {
+            if (e.data.size <= 0) { return; }
+            setProgress(element.currentTime / element.duration);
+            storage.size += e.data.size;
+            setData(ab2str(await e.data.arrayBuffer()));
+          };
           storage.recorder.onstop = async () => {
-            const blob = new Blob(storage.chunks, { type: 'video/webm; codecs=vp9' });
-            const url = URL.createObjectURL(blob);
-            const button = document.createElement('a');
-            document.body.appendChild(button);
-            button.id = 'download';
-            button.innerText = 'Download Video';
-            button.href = url;
-            button.download = `${document.title}.webm`;
-            resolve(blob.size / 1024 / 1024);
+            clearInterval(storage.timer);
+            setEnd();
+            resolve(storage.size);
           };
           storage.recorder.start();
-          storage.start = Date.now();
-        });
-
-        element.addEventListener('timeupdate', () => setProgress(element.currentTime / element.duration));
+          storage.timer = setInterval(() => storage.recorder.requestData(), 1 * 1000);
+          // test
+          setTimeout(() => storage.recorder.stop(), 20 * 1000);
+        };
 
         element.play();
 
       }),
     );
+    const readableSize = `${(size / 1024 / 1024).toFixed(2)}MB`;
+    logger.info(`video size::: ${readableSize}`);
 
-    logger.info(`video size::: ${size} MB`);
-
-    const [download] = await Promise.all([
-      // It is important to call waitForEvent before click to set up waiting.
-      page.waitForEvent('download'),
-      // Triggers the download.
-      page.locator('#download').click(),
-    ]);
-    // wait for download to complete
-    const path = `temp/${download.suggestedFilename()}`;
-    const rawPath = `temp/raw-${download.suggestedFilename()}`;
-    await download.saveAs(rawPath);
     $.verbose = false;
-    await $`ffmpeg -y -i ${rawPath} -vcodec copy -acodec copy ${path} && rm ${rawPath}`;
-
-    logger.info(`saved path::: ${path}`);
+    await $`ffmpeg -y -i ${binaryPath} -vcodec copy -acodec copy ${savedPath} && rm ${binaryPath}`;
+    logger.info(`saved path::: ${savedPath}`);
 
     await page.close();
     await context.close();
 
-    return [`${size} MB`, path];
+    return [savedPath, readableSize];
 
   };
