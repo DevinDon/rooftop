@@ -3,20 +3,10 @@
 # compiled output
 /dist
 /tmp
-/temp
 /out-tsc
-/log
-/logs
-/handlers
-tsconfig.generated.json
-*.tsbuildinfo
 
 # dependencies
 /node_modules
-.pnpm-debug.log
-
-# Env
-*.env
 
 # IDEs and editors
 /.idea

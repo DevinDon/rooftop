@@ -1,32 +1,12 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "outDir": "../dist/out-tsc/tools",
     "rootDir": ".",
-    "outDir": "../dist/tools",
-    "sourceMap": true,
-    "declaration": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "strict": true,
-    "allowJs": false,
-    "target": "ES2020",
-    "module": "CommonJS",
-    "lib": [
-      "ES2016",
-      "ES2017",
-      "ES2018",
-      "ES2019",
-      "ES2020",
-      "ES2021",
-      "ESNext"
-    ],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true
+    "module": "commonjs",
+    "target": "es5",
+    "types": ["node"],
+    "importHelpers": false
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["**/*.ts"]
 }

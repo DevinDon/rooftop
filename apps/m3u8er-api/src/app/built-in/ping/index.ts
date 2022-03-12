@@ -1,1 +1,0 @@
-export { routerOfPing } from './ping';

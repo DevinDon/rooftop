@@ -1,1 +1,0 @@
-export { routerOfRegister } from './register';

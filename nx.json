@@ -4,7 +4,7 @@
     "defaultBase": "main"
   },
   "cli": {
-    "defaultCollection": "@nrwl/react"
+    "defaultCollection": "@nrwl/workspace"
   },
   "implicitDependencies": {
     "package.json": {
@@ -21,8 +21,7 @@
           "build",
           "lint",
           "test",
-          "e2e",
-          "build-storybook"
+          "e2e"
         ]
       }
     }
@@ -34,22 +33,5 @@
         "projects": "dependencies"
       }
     ]
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "styled-components",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "styled-components"
-      },
-      "library": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "rooftop"
+  }
 }
