@@ -53,7 +53,7 @@ export const Download: Handler<{ url: string; concat?: boolean }> = async ({ url
     .map(uri => uri.startsWith('http') ? uri : new URL(uri, m3u8url).href);
 
   logger.info(`total ${uris.length} segments`);
-  const { listPath, m3u8Path, sourceUrl, metadata } = await new Downloader({ uris, page, query: new URL(m3u8url).search, logger, m3u8: content }).start();
+  const { listPath, m3u8Path, metadata } = await new Downloader({ uris, page, query: new URL(m3u8url).search, logger, m3u8: content }).start();
   logger.info(`list file: ${listPath}\nm3u8 file: ${m3u8Path}`);
 
   await page.close();
@@ -63,7 +63,7 @@ export const Download: Handler<{ url: string; concat?: boolean }> = async ({ url
     await $`ffmpeg -safe 0 -f concat -i ${listPath} -vcodec copy -acodec copy -bsf:a aac_adtstoasc ${dirname(listPath)}/output.mp4`;
   }
 
-  return { listPath, m3u8Path, sourceUrl, metadata };
+  return { listPath, m3u8Path, metadata };
 
 };
 
@@ -152,13 +152,13 @@ export class Downloader {
       .map(path => `file '${path}'`)
       .join('\n');
     const listPath = resolve(this.dir, 'index.list');
-    const m3u8 = this.rawUris.reduce((content, uri) => {
-      const filename = this.getFilename(uri);
-      const link = relative(Downloader.STORAGE_PATH, resolve(this.dir, filename));
-      return content.replace(uri, link);
-    }, this.m3u8);
+    const m3u8 = this.rawUris.reduce((content, uri) => content.replace(uri, this.getFilename(uri)), this.m3u8);
     const m3u8Path = resolve(this.dir, 'index.m3u8');
-    const metadata = { title: await this.page.title(), url: relative(Downloader.STORAGE_PATH, m3u8Path) };
+    const metadata = {
+      source: this.page.url(),
+      title: await this.page.title(),
+      url: relative(Downloader.STORAGE_PATH, m3u8Path),
+    };
     const metadataPath = resolve(this.dir, 'metadata.json');
     await Promise.all([
       writeFile(listPath, list),
@@ -172,7 +172,6 @@ export class Downloader {
     return {
       listPath: relative(Downloader.STORAGE_PATH, listPath),
       m3u8Path: relative(Downloader.STORAGE_PATH, m3u8Path),
-      sourceUrl: this.page.url(),
       metadata,
     };
   }

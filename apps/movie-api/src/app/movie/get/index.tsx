@@ -1,6 +1,6 @@
-import { Capturer, Schema, Static, useUrl, type Handler, type Router } from '@rester/core';
+import { Capturer, Cors, Schema, Static, useUrl, type Handler, type Router } from '@rester/core';
 import { join } from 'path';
-import { Downloader } from './put/download';
+import { Downloader } from '../put/download';
 
 export const routerOfGetMovie: Router = {
   location: {
@@ -8,13 +8,15 @@ export const routerOfGetMovie: Router = {
     path: '/movies/*',
   },
   handler: () => <Capturer>
-    <GetTask />
+    <Cors>
+      <GetMovie />
+    </Cors>
   </Capturer>,
 };
 
 export default routerOfGetMovie;
 
-export const GetTask: Handler = async (_, { useContext }) => {
+export const GetMovie: Handler = async (_, { useContext }) => {
 
   const { url } = useUrl(useContext);
   const path = join(Downloader.STORAGE_PATH, url.slices.slice(1).join('/'));
