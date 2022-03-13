@@ -1,6 +1,7 @@
 import { loadenv, Rester } from '@rester/core';
 import { aphorismRouters } from './app/aphorism';
 import { builtInRouters } from './app/built-in';
+import { movieRouters } from './app/movie';
 import { environment } from './environments/environment';
 
 loadenv({
@@ -17,6 +18,8 @@ export const bootstrap = async () => {
     server.routes(builtInRouters),
     // aphorism routers
     server.routes(aphorismRouters),
+    // movie routes
+    server.routes(movieRouters),
   ]);
 
   server.listen(environment.listeningOptions);

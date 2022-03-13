@@ -4,7 +4,7 @@ import { createHash } from 'crypto';
 import { join, resolve } from 'path';
 import type { ImportModule } from '../../helpers';
 
-export const HANDLERS_PATH = resolve('.', 'handlers');
+export const HANDLERS_PATH = resolve('temp', 'handlers');
 
 export const routerOfRegister: Router = {
   location: {
