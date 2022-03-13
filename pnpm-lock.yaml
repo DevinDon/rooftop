@@ -6,6 +6,8 @@ specifiers:
   '@emotion/babel-plugin': 11.7.2
   '@emotion/react': 11.8.2
   '@emotion/styled': 11.8.1
+  '@nplayer/danmaku': ^1.0.10
+  '@nplayer/react': ^1.0.10
   '@nrwl/cli': 13.8.8
   '@nrwl/cypress': 13.8.8
   '@nrwl/devkit': 13.8.5
@@ -18,11 +20,11 @@ specifiers:
   '@nrwl/web': 13.8.8
   '@nrwl/workspace': 13.8.8
   '@prisma/client': ^3.10.0
-  '@rester/core': ~0.22.0-20220313210107
-  '@rester/eslint-config': ~0.22.0-20220313210107
-  '@rester/filesystem': ~0.22.0-20220313210107
-  '@rester/logger': ~0.22.0-20220313210107
-  '@rester/nx': ^0.22.0-20220313210107
+  '@rester/core': ~0.22.0-20220313231501
+  '@rester/eslint-config': ~0.22.0-20220313231501
+  '@rester/filesystem': ~0.22.0-20220313231501
+  '@rester/logger': ~0.22.0-20220313231501
+  '@rester/nx': ^0.22.0-20220313231501
   '@sinclair/typebox': ~0.23.4
   '@swc/core': ~1.2.143
   '@swc/jest': 0.2.15
@@ -51,9 +53,11 @@ specifiers:
   esno: ^0.14.1
   fast-json-stringify: ~3.0.3
   fs-extra: ^10.0.1
+  hls.js: ^1.1.5
   jest: 27.2.3
   m3u8-parser: ^4.7.0
   mockjs: ~1.1.0
+  nplayer: ^1.0.10
   playwright: ^1.19.2
   postcss: ^8.4.8
   prettier: ^2.5.1
@@ -77,17 +81,21 @@ specifiers:
 dependencies:
   '@emotion/react': 11.8.2_bf389bc9d9c898d23b26c0366b4e1ca7
   '@emotion/styled': 11.8.1_f003f72b024767ff904b1489bd7777d6
+  '@nplayer/danmaku': 1.0.10
+  '@nplayer/react': 1.0.10_nplayer@1.0.10
   '@prisma/client': 3.10.0_prisma@3.10.0
-  '@rester/core': 0.22.0-20220313210107
-  '@rester/filesystem': 0.22.0-20220313210107
-  '@rester/logger': 0.22.0-20220313210107
+  '@rester/core': 0.22.0-20220313231501
+  '@rester/filesystem': 0.22.0-20220313231501
+  '@rester/logger': 0.22.0-20220313231501
   '@sinclair/typebox': 0.23.4
   core-js: 3.21.1
   cross-fetch: 3.1.5
   fast-json-stringify: 3.0.3
   fs-extra: 10.0.1
+  hls.js: 1.1.5
   m3u8-parser: 4.7.0
   mockjs: 1.1.0
+  nplayer: 1.0.10
   playwright: 1.19.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -110,8 +118,8 @@ devDependencies:
   '@nrwl/tao': 13.8.8
   '@nrwl/web': 13.8.8_053dc48a5c46040a98f1804bbb56ddd8
   '@nrwl/workspace': 13.8.8_a945cf57d5944e875bf896a5a1e53eb0
-  '@rester/eslint-config': 0.22.0-20220313210107
-  '@rester/nx': 0.22.0-20220313210107
+  '@rester/eslint-config': 0.22.0-20220313231501
+  '@rester/nx': 0.22.0-20220313231501
   '@swc/core': 1.2.154
   '@swc/jest': 0.2.15_@swc+core@1.2.154
   '@testing-library/react': 12.1.4_react-dom@17.0.2+react@17.0.2
@@ -1959,6 +1967,18 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@nplayer/danmaku/1.0.10:
+    resolution: {integrity: sha512-2ZzfTadBj8efc9/2LNL18dcPKJGv3SdEfH+eEPAd39I3620yiLCcpfPcijmmc2+yre0SJUhhfM8U3/cQ3JKQtA==}
+    dev: false
+
+  /@nplayer/react/1.0.10_nplayer@1.0.10:
+    resolution: {integrity: sha512-bI5+AvBoVl88Uz7JyybvDRZdbNOrfUkG0EmH0Dq/hgsm5avJo4wIAZxptwtAbi5Tb5z/W6r+3cttY2Edo8bIfg==}
+    peerDependencies:
+      nplayer: 1.0.10
+    dependencies:
+      nplayer: 1.0.10
+    dev: false
+
   /@nrwl/cli/13.8.5:
     resolution: {integrity: sha512-vxDZUCl1u2ZGZATyxBCAzMlR1cLnNwZMzl8yAW2ghnzWun5QynYeOg6GfcoE232E2rIov9YDbEeh2ZusMJeYuw==}
     hasBin: true
@@ -3012,11 +3032,11 @@ packages:
       - supports-color
     dev: true
 
-  /@rester/core/0.22.0-20220313210107:
-    resolution: {integrity: sha512-CZnyxrQEpOON9q2nHAcWQWRXDt9VsPsIhT6oNVwA89gz8iGJ+KnYwhNrDzaqiVX79oYNLKMWPJJh2BoiJmTPZA==}
+  /@rester/core/0.22.0-20220313231501:
+    resolution: {integrity: sha512-tNuaZs7ZAyEdYpXSWYAxEuTLXvUZ8uuYixe18gzE6icjPUzCySpKGhNOlnMYtA8k3R1Ch8m2T/S4+wH+jxdMZw==}
     dependencies:
-      '@rester/filesystem': 0.22.0-20220313210107
-      '@rester/logger': 0.22.0-20220313210107
+      '@rester/filesystem': 0.22.0-20220313231501
+      '@rester/logger': 0.22.0-20220313231501
       '@sinclair/typebox': 0.23.4
       ajv: 8.10.0
       ajv-formats: 2.1.1
@@ -3026,24 +3046,24 @@ packages:
       - encoding
     dev: false
 
-  /@rester/eslint-config/0.22.0-20220313210107:
-    resolution: {integrity: sha512-6NwkxG7Y3TrOSHtNs+YahLCJL/E5d/QhaPyz20Y+MDAfQ/eGK1UPzMbXoJeO2s8SbhWtidVG0HdFPDlSsnj+fg==}
+  /@rester/eslint-config/0.22.0-20220313231501:
+    resolution: {integrity: sha512-pgSyZC+VTK1BlHmVVDIZ7mT8xpnTRRAyBv059q5ZQed2rz8GEQMLXUnjYoqHlBVXDp/Cwz1C8v7K7Hmhe+UqWA==}
     dev: true
 
-  /@rester/filesystem/0.22.0-20220313210107:
-    resolution: {integrity: sha512-6VOjexZ7hniAKMuNtsbcM6xPNenEIwcf/1g6wFh8XnCdZUKAdMsZOz3VidBf+YSdJOJ/U5GVH/fVfAakYQDSeQ==}
+  /@rester/filesystem/0.22.0-20220313231501:
+    resolution: {integrity: sha512-kaCFoQGAdTkGyliSeChc6Ihr8K2GFTFuCwELp3VU6JNJ2hKQPqGgqiB7LY3p3XOUT5Ixv6ZMnoh+VPS2UtqTRA==}
     dependencies:
       fs-extra: 10.0.1
     dev: false
 
-  /@rester/logger/0.22.0-20220313210107:
-    resolution: {integrity: sha512-33mrS1fHv0U3V8cPtbmPZFqMqjS+MgEAiLctGRlu7qy5SN12I7ct8fkk7HkKzeGcxp3ArQB/fOSfmBwNj7VQrg==}
+  /@rester/logger/0.22.0-20220313231501:
+    resolution: {integrity: sha512-0w29LX+GpFZh0BmeBIlK1oBoqrX0Q29p3RnfO1r/wEIQr3BzzZ0rusSioIHHscrtNIquqFee0QJa9R1VgvepcQ==}
     dependencies:
-      '@rester/filesystem': 0.22.0-20220313210107
+      '@rester/filesystem': 0.22.0-20220313231501
     dev: false
 
-  /@rester/nx/0.22.0-20220313210107:
-    resolution: {integrity: sha512-QXD+Ish37k8Nq+/GKBKylpXSNqG2FnVfbezag/f6P/NhpEzYOLRnva4uuqIQSR6fwD+3WW1UI+6AVkV4XzpcVQ==}
+  /@rester/nx/0.22.0-20220313231501:
+    resolution: {integrity: sha512-sSlT+pL+QXdrcaRZTXdSsrosNwtbnpDAKBQ8p7Os94NiJ4982Z3YAM0zdU7RuNH4xOERIsuPsvBmux+DtZJM1w==}
     dependencies:
       '@nrwl/devkit': 13.8.5
       comment-json: 4.2.2
@@ -7532,6 +7552,10 @@ packages:
       value-equal: 1.0.1
     dev: false
 
+  /hls.js/1.1.5:
+    resolution: {integrity: sha512-mQX5TSNtJEzGo5HPpvcQgCu+BWoKDQM6YYtg/KbgWkmVAcqOCvSTi0SuqG2ZJLXxIzdnFcKU2z7Mrw/YQWhPOA==}
+    dev: false
+
   /hoist-non-react-statics/3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
@@ -9689,6 +9713,10 @@ packages:
     resolution: {integrity: sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==}
     engines: {node: '>=10'}
     dev: true
+
+  /nplayer/1.0.10:
+    resolution: {integrity: sha512-o+vKwCudLZQA5sI1RJR0l+GJqlOEQBKjeAVsCeOlRGV5gM3i5SXm4hqRxTnygaiKpr5wnnjQoXqqoDwgG2jhvg==}
+    dev: false
 
   /npm-run-path/4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}

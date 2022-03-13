@@ -5,7 +5,7 @@
  Delete this file and get started with your project!
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
-export const NxWelcome = ({ title }: { title: string }) => (
+export const AboutPage = ({ title }: { title: string }) => (
   <>
     <style
       dangerouslySetInnerHTML={{
@@ -816,4 +816,4 @@ export const NxWelcome = ({ title }: { title: string }) => (
   </>
 );
 
-export default NxWelcome;
+export default AboutPage;

@@ -1,6 +1,8 @@
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
-import NxWelcome from './nx-welcome';
+import { AboutPage } from './about';
+import HomePage from './home';
+import PlayPage from './play';
 
 const TailwindApp = tw.div`
 `;
@@ -35,8 +37,11 @@ export const App = () => <TailwindApp>
   </TailwindNav>
 
   <TailwindBody>
-    <Route path="/" exact render={() => <div>Home Page Here</div>} />
-    <Route path="/about" exact render={() => <NxWelcome title="movie" />} />
+    <Switch>
+      <Route path="/" exact render={() => <HomePage />} />
+      <Route path="/play/:id" render={() => <PlayPage />} />
+      <Route path="/about" exact render={() => <AboutPage title="movie" />} />
+    </Switch>
   </TailwindBody>
 
 </TailwindApp>;

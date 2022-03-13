@@ -10,6 +10,7 @@ import { dirname, relative, resolve } from 'path';
 import type { Browser, Page } from 'playwright';
 import { chromium } from 'playwright';
 import { $ } from 'zx';
+import type { Metadata } from '../gets';
 
 const CACHED = { browser: null as unknown as Browser };
 
@@ -141,8 +142,12 @@ export class Downloader {
       this.logger.info(`${path} exists, skipped`);
       return;
     }
-    const response = await this.page.request.get(uri, { ignoreHTTPSErrors: true });
-    createWriteStream(path).end(await response.body());
+    try {
+      const response = await this.page.request.get(uri, { ignoreHTTPSErrors: true });
+      createWriteStream(path).end(await response.body());
+    } catch (error) {
+      this.logger.error('error while downloading files:::', error);
+    }
   }
 
   async start() {
@@ -154,7 +159,7 @@ export class Downloader {
     const listPath = resolve(this.dir, 'index.list');
     const m3u8 = this.rawUris.reduce((content, uri) => content.replace(uri, this.getFilename(uri)), this.m3u8);
     const m3u8Path = resolve(this.dir, 'index.m3u8');
-    const metadata = {
+    const metadata: Metadata = {
       source: this.page.url(),
       title: await this.page.title(),
       url: relative(Downloader.STORAGE_PATH, m3u8Path),
