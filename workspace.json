@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "movie": "apps/movie",
-    "movie-e2e": "apps/movie-e2e"
+    "movie-e2e": "apps/movie-e2e",
+    "movie-api": "apps/movie-api"
   }
 }

@@ -1,0 +1,1 @@
+export { routerOfSeed } from './seed';

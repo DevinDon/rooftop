@@ -1,0 +1,1 @@
+export { routerOfPing } from './ping';

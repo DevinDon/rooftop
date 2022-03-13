@@ -1,0 +1,48 @@
+{
+  "name": "@rester/aphorism",
+  "version": "0.22.0-20220313144717",
+  "description": "Demo project for Rester framework.",
+  "private": true,
+  "main": "./main.mjs",
+  "scripts": {
+    "postinstall": "prisma generate",
+    "start": "NODE_ENV=production node .",
+    "start:node": "NODE_ENV=production node --es-module-specifier-resolution=node ."
+  },
+  "prisma": {
+    "seed": "esno ./src/scripts/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.10.0",
+    "prisma": "^3.10.0",
+    "@rester/core": "~0.22.0-20220313144717",
+    "@rester/filesystem": "~0.22.0-20220313144717",
+    "@rester/logger": "~0.22.0-20220313144717",
+    "@sinclair/typebox": "~0.23.4",
+    "ajv": "~8.10.0",
+    "ajv-formats": "~2.1.1",
+    "cross-fetch": "~3.1.5",
+    "fast-json-stringify": "~3.0.3",
+    "mockjs": "~1.1.0",
+    "esno": "^0.14.1"
+  },
+  "keywords": [
+    "restful",
+    "server",
+    "typescript",
+    "nodejs",
+    "tsx",
+    "esbuild",
+    "serverless"
+  ],
+  "homepage": "https://github.com/DevinDon/rester/blob/main/apps/aphorism",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DevinDon/rester.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DevinDon/rester/issues"
+  },
+  "author": "IInfinity <I.INF@Outlook.com> (https://blog.don.red)",
+  "license": "MIT"
+}

@@ -35,8 +35,8 @@ export const App = () => <TailwindApp>
   </TailwindNav>
 
   <TailwindBody>
-    <Route path="/" exact render={() => <NxWelcome title="movie" />} />
-    <Route path="/about" exact render={() => <div><Link to="/">Click here to go back to root page.</Link></div>} />
+    <Route path="/" exact render={() => <div>Home Page Here</div>} />
+    <Route path="/about" exact render={() => <NxWelcome title="movie" />} />
   </TailwindBody>
 
 </TailwindApp>;

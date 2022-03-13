@@ -1,0 +1,72 @@
+{
+  "root": "apps/movie-api",
+  "sourceRoot": "apps/movie-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@rester/nx:tscbuild",
+      "options": {
+        "assets": [
+          "apps/movie-api/prisma/schema.prisma",
+          "apps/movie-api/.env",
+          "apps/movie-api/Dockerfile",
+          "apps/movie-api/package.json",
+          "apps/movie-api/README.md",
+          "apps/movie-api/src/assets"
+        ],
+        "tsconfigPath": "apps/movie-api/tsconfig.json"
+      },
+      "configurations": {
+        "production": {
+          "tsconfig": {
+            "compilerOptions": {
+              "declaration": false,
+              "sourceMap": false
+            }
+          },
+          "fileReplacements": [
+            {
+              "replace": "apps/movie-api/src/environments/environment.ts",
+              "with": "apps/movie-api/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "apps/movie-api/prisma/schema.prisma",
+              "with": "apps/movie-api/prisma/schema.prod.prisma"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@rester/nx:serve",
+      "options": {
+        "buildTarget": "movie-api:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "movie-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/movie-api/**/*.ts",
+          "apps/movie-api/**/*.tsx"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/movie-api"
+      ],
+      "options": {
+        "jestConfig": "apps/movie-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
