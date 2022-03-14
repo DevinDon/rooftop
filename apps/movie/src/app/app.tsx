@@ -31,16 +31,16 @@ const TailwindBody = tw.div`
 export const App = () => <TailwindApp>
 
   <TailwindNav>
-    <TailwindNavLink to="/">Home</TailwindNavLink>
+    <TailwindNavLink to='/'>Home</TailwindNavLink>
     <TailwindFlexGrow />
-    <TailwindNavLink to="/about">About</TailwindNavLink>
+    <TailwindNavLink to='/about'>About</TailwindNavLink>
   </TailwindNav>
 
   <TailwindBody>
     <Switch>
-      <Route path="/" exact render={() => <HomePage />} />
-      <Route path="/play/:id" render={() => <PlayPage />} />
-      <Route path="/about" exact render={() => <AboutPage title="movie" />} />
+      <Route path='/' exact render={() => <HomePage />} />
+      <Route path='/play/:id' render={() => <PlayPage />} />
+      <Route path='/about' exact render={() => <AboutPage title='movie' />} />
     </Switch>
   </TailwindBody>
 

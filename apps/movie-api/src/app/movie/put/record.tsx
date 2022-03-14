@@ -80,7 +80,9 @@ export const Record: Handler<{ url: string }> = async ({ url }, { logger }) => {
         storage.stream = element.captureStream(60);
         storage.recorder = new MediaRecorder(storage.stream, { mimeType: 'video/webm; codecs=vp9,opus' });
         storage.recorder.ondataavailable = async e => {
-          if (e.data.size <= 0) { return; }
+          if (e.data.size <= 0) {
+            return;
+          }
           setProgress(element.currentTime / element.duration);
           storage.size += e.data.size;
           setData(ab2str(await e.data.arrayBuffer()));
