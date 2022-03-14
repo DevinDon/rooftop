@@ -6,6 +6,8 @@ specifiers:
   '@emotion/babel-plugin': 11.7.2
   '@emotion/react': 11.8.2
   '@emotion/styled': 11.8.1
+  '@headlessui/react': ^1.5.0
+  '@heroicons/react': ^1.0.6
   '@nplayer/danmaku': ^1.0.10
   '@nplayer/react': ^1.0.10
   '@nrwl/cli': 13.8.8
@@ -20,11 +22,11 @@ specifiers:
   '@nrwl/web': 13.8.8
   '@nrwl/workspace': 13.8.8
   '@prisma/client': ^3.10.0
-  '@rester/core': 0.22.0-20220314173442
-  '@rester/eslint-config': 0.22.0-20220314173442
-  '@rester/filesystem': 0.22.0-20220314173442
-  '@rester/logger': 0.22.0-20220314173442
-  '@rester/nx': 0.22.0-20220314173442
+  '@rester/core': 0.22.0-20220314191437
+  '@rester/eslint-config': 0.22.0-20220314191437
+  '@rester/filesystem': 0.22.0-20220314191437
+  '@rester/logger': 0.22.0-20220314191437
+  '@rester/nx': 0.22.0-20220314191437
   '@sinclair/typebox': ~0.23.4
   '@swc/core': ~1.2.143
   '@swc/jest': 0.2.15
@@ -81,12 +83,14 @@ specifiers:
 dependencies:
   '@emotion/react': 11.8.2_bf389bc9d9c898d23b26c0366b4e1ca7
   '@emotion/styled': 11.8.1_f003f72b024767ff904b1489bd7777d6
+  '@headlessui/react': 1.5.0_react-dom@17.0.2+react@17.0.2
+  '@heroicons/react': 1.0.6_react@17.0.2
   '@nplayer/danmaku': 1.0.10
   '@nplayer/react': 1.0.10_nplayer@1.0.10
   '@prisma/client': 3.10.0_prisma@3.10.0
-  '@rester/core': 0.22.0-20220314173442
-  '@rester/filesystem': 0.22.0-20220314173442
-  '@rester/logger': 0.22.0-20220314173442
+  '@rester/core': 0.22.0-20220314191437
+  '@rester/filesystem': 0.22.0-20220314191437
+  '@rester/logger': 0.22.0-20220314191437
   '@sinclair/typebox': 0.23.4
   core-js: 3.21.1
   cross-fetch: 3.1.5
@@ -118,8 +122,8 @@ devDependencies:
   '@nrwl/tao': 13.8.8
   '@nrwl/web': 13.8.8_053dc48a5c46040a98f1804bbb56ddd8
   '@nrwl/workspace': 13.8.8_a945cf57d5944e875bf896a5a1e53eb0
-  '@rester/eslint-config': 0.22.0-20220314173442
-  '@rester/nx': 0.22.0-20220314173442
+  '@rester/eslint-config': 0.22.0-20220314191437
+  '@rester/nx': 0.22.0-20220314191437
   '@swc/core': 1.2.154
   '@swc/jest': 0.2.15_@swc+core@1.2.154
   '@testing-library/react': 12.1.4_react-dom@17.0.2+react@17.0.2
@@ -1654,6 +1658,25 @@ packages:
       - supports-color
     dev: true
 
+  /@headlessui/react/1.5.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-aaRnYxBb3MU2FNJf3Ut9RMTUqqU3as0aI1lQhgo2n9Fa67wRu14iOGqx93xB+uMNVfNwZ5B3y/Ndm7qZGuFeMQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@heroicons/react/1.0.6_react@17.0.2:
+    resolution: {integrity: sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 17.0.2
+    dev: false
+
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
     engines: {node: '>=10.10.0'}
@@ -3032,11 +3055,11 @@ packages:
       - supports-color
     dev: true
 
-  /@rester/core/0.22.0-20220314173442:
-    resolution: {integrity: sha512-q2kfePSqA//4YGGyuQI5OKXPHlBKZgNIpQhnX1lO2PuPcTl4wOZ+qW/vLwI44EQRHRX/7AgZRUgC0mdPD9ZzCw==}
+  /@rester/core/0.22.0-20220314191437:
+    resolution: {integrity: sha512-oTW25OX+B2M+b4kjmdI2khDdur6Wo7uDS+kYBTeRpybaLyyXFlIlYgxcmMMVmdrjb9yYCcEoupVhzbnaWE0esA==}
     dependencies:
-      '@rester/filesystem': 0.22.0-20220314173442
-      '@rester/logger': 0.22.0-20220314173442
+      '@rester/filesystem': 0.22.0-20220314191437
+      '@rester/logger': 0.22.0-20220314191437
       '@sinclair/typebox': 0.23.4
       ajv: 8.10.0
       ajv-formats: 2.1.1
@@ -3046,24 +3069,24 @@ packages:
       - encoding
     dev: false
 
-  /@rester/eslint-config/0.22.0-20220314173442:
-    resolution: {integrity: sha512-6ejVn4uKjRdTIVDPhlAj2C570GGWX5CP41zElu7SALrLjSRC4n6t9pQShpTpjbvxW/4emAZWFx2qLC6fejE/ig==}
+  /@rester/eslint-config/0.22.0-20220314191437:
+    resolution: {integrity: sha512-au9UWzqIOZxgiYRnDea1r9TaUZAGQHPWUh/MFq0WAea8/4eCHrVZQqcwT0nLURfUJSD2N2pBQZjY6a1m0uIZ3Q==}
     dev: true
 
-  /@rester/filesystem/0.22.0-20220314173442:
-    resolution: {integrity: sha512-hgad2LcTYsoLTQ9lJ7bwo8W8BVb7+vcQIAiyjOx5TR85ZNVmGFse/Osu8bfoSV0PIK+Ze19SmPftQ3PwCM0Z/w==}
+  /@rester/filesystem/0.22.0-20220314191437:
+    resolution: {integrity: sha512-BFEsF8DzDV1gd5Vxz3jMCh1pqAP98dgm9r+qhFqoMnMv4MBhCPIsfzEuwhAH4J3S4CQAgXIoTpYiQJ7QvoIcew==}
     dependencies:
       fs-extra: 10.0.1
     dev: false
 
-  /@rester/logger/0.22.0-20220314173442:
-    resolution: {integrity: sha512-JDh2nSTmUxYN0axJ15x3qsKO55CBYpkWnInkZLmyWPrPeXiytZCR0FsfnvcGuinH+H8ZU8g47Ih6fmUubOXtUw==}
+  /@rester/logger/0.22.0-20220314191437:
+    resolution: {integrity: sha512-U32+c3VZSSccnF6NnW0goD03gPAqhITqSpxacF4VgD7l/Qnc7e+1u5lAYKzrg+nBJCqrQzwGeM+/M1IN5CiXgA==}
     dependencies:
-      '@rester/filesystem': 0.22.0-20220314173442
+      '@rester/filesystem': 0.22.0-20220314191437
     dev: false
 
-  /@rester/nx/0.22.0-20220314173442:
-    resolution: {integrity: sha512-YIJ60tY+ygxYgCKCgHbk8fqrGfei78Edk2OGvNiRhSEM49oedEeYZ826rGFTG1hjatANmgAM4x9oCEmAWB4PBQ==}
+  /@rester/nx/0.22.0-20220314191437:
+    resolution: {integrity: sha512-p4iko33deAtPCKKgQkxksNKh9y6w1djqBj+TezJa6gOfBQNs5Un5Opc8Bwt/1Mm54XkJ91oWxFR8qdHJZ7N7EA==}
     dependencies:
       '@nrwl/devkit': 13.8.5
       comment-json: 4.2.2

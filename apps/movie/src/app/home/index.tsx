@@ -16,7 +16,8 @@ const TailwindListItem = tw(Link)`
 export type Metadata = {
   source: string;
   title: string;
-  url: string;
+  m3u8: string;
+  md5: string;
 };
 
 export const HomePage = () => {
@@ -31,11 +32,16 @@ export const HomePage = () => {
 
   return <TailwindList>
     {
-      list.map(
-        metadata => <TailwindListItem key={metadata.url} to={`/play/${btoa(metadata.url)}`}>
-          {metadata.title}
-        </TailwindListItem>,
-      )
+      list
+        .map(
+          metadata => {
+            const link = `${metadata.md5}/${metadata.m3u8}`;
+            const { title } = metadata;
+            return <TailwindListItem key={link} to={`/play/${btoa(link)}`}>
+              {title}
+            </TailwindListItem>;
+          },
+        )
     }
   </TailwindList>;
 

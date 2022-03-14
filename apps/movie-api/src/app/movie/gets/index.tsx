@@ -1,12 +1,13 @@
 import { Capturer, Cors, Schema, type Handler, type Router } from '@rester/core';
-import { isFile, loadJson, readdir as readDir } from '@rester/filesystem';
+import { ensureDir, isFile, loadJson, readdir as readDir } from '@rester/filesystem';
 import { resolve } from 'path';
 import { Downloader } from '../put/download';
 
 export type Metadata = {
   source: string;
   title: string;
-  url: string;
+  m3u8: string;
+  md5: string;
 };
 
 export const routerOfGetMovieList: Router = {
@@ -14,6 +15,7 @@ export const routerOfGetMovieList: Router = {
     method: 'GET',
     path: '/movies',
   },
+  initial: () => ensureDir(Downloader.STORAGE_PATH),
   handler: () => <Capturer>
     <Cors>
       <GetMovieList />

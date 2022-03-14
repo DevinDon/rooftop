@@ -162,7 +162,8 @@ export class Downloader {
     const metadata: Metadata = {
       source: this.page.url(),
       title: await this.page.title(),
-      url: relative(Downloader.STORAGE_PATH, m3u8Path),
+      m3u8: 'index.m3u8',
+      md5: this.md5,
     };
     const metadataPath = resolve(this.dir, 'metadata.json');
     await Promise.all([
