@@ -18,8 +18,8 @@ const TailwindNav = tw.div`
 const TailwindNavLink = tw(Link)`
   border-none rounded
   px-4 py-2
-  hover:bg-gray-200
-  transition-colors duration-300
+  hover:bg-gray-200 hover:shadow
+  transition-all duration-300
 `;
 
 const TailwindFlexGrow = tw.div`

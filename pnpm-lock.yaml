@@ -22,11 +22,11 @@ specifiers:
   '@nrwl/web': 13.8.8
   '@nrwl/workspace': 13.8.8
   '@prisma/client': ^3.10.0
-  '@rester/core': 0.22.0-20220314191437
-  '@rester/eslint-config': 0.22.0-20220314191437
-  '@rester/filesystem': 0.22.0-20220314191437
-  '@rester/logger': 0.22.0-20220314191437
-  '@rester/nx': 0.22.0-20220314191437
+  '@rester/core': 0.22.0-20220315093620
+  '@rester/eslint-config': 0.22.0-20220315093620
+  '@rester/filesystem': 0.22.0-20220315093620
+  '@rester/logger': 0.22.0-20220315093620
+  '@rester/nx': 0.22.0-20220315093620
   '@sinclair/typebox': ~0.23.4
   '@swc/core': ~1.2.143
   '@swc/jest': 0.2.15
@@ -88,9 +88,9 @@ dependencies:
   '@nplayer/danmaku': 1.0.10
   '@nplayer/react': 1.0.10_nplayer@1.0.10
   '@prisma/client': 3.10.0_prisma@3.10.0
-  '@rester/core': 0.22.0-20220314191437
-  '@rester/filesystem': 0.22.0-20220314191437
-  '@rester/logger': 0.22.0-20220314191437
+  '@rester/core': 0.22.0-20220315093620
+  '@rester/filesystem': 0.22.0-20220315093620
+  '@rester/logger': 0.22.0-20220315093620
   '@sinclair/typebox': 0.23.4
   core-js: 3.21.1
   cross-fetch: 3.1.5
@@ -122,8 +122,8 @@ devDependencies:
   '@nrwl/tao': 13.8.8
   '@nrwl/web': 13.8.8_053dc48a5c46040a98f1804bbb56ddd8
   '@nrwl/workspace': 13.8.8_a945cf57d5944e875bf896a5a1e53eb0
-  '@rester/eslint-config': 0.22.0-20220314191437
-  '@rester/nx': 0.22.0-20220314191437
+  '@rester/eslint-config': 0.22.0-20220315093620
+  '@rester/nx': 0.22.0-20220315093620
   '@swc/core': 1.2.154
   '@swc/jest': 0.2.15_@swc+core@1.2.154
   '@testing-library/react': 12.1.4_react-dom@17.0.2+react@17.0.2
@@ -3055,11 +3055,11 @@ packages:
       - supports-color
     dev: true
 
-  /@rester/core/0.22.0-20220314191437:
-    resolution: {integrity: sha512-oTW25OX+B2M+b4kjmdI2khDdur6Wo7uDS+kYBTeRpybaLyyXFlIlYgxcmMMVmdrjb9yYCcEoupVhzbnaWE0esA==}
+  /@rester/core/0.22.0-20220315093620:
+    resolution: {integrity: sha512-+M01iKGD/078KhxuVbwjJLmSethxIZVY9IWwSiTslI7bXjSnGetSdKG9FNf1Qncz3tFAfDuhFEoSUbZaJ0117g==}
     dependencies:
-      '@rester/filesystem': 0.22.0-20220314191437
-      '@rester/logger': 0.22.0-20220314191437
+      '@rester/filesystem': 0.22.0-20220315093620
+      '@rester/logger': 0.22.0-20220315093620
       '@sinclair/typebox': 0.23.4
       ajv: 8.10.0
       ajv-formats: 2.1.1
@@ -3069,24 +3069,24 @@ packages:
       - encoding
     dev: false
 
-  /@rester/eslint-config/0.22.0-20220314191437:
-    resolution: {integrity: sha512-au9UWzqIOZxgiYRnDea1r9TaUZAGQHPWUh/MFq0WAea8/4eCHrVZQqcwT0nLURfUJSD2N2pBQZjY6a1m0uIZ3Q==}
+  /@rester/eslint-config/0.22.0-20220315093620:
+    resolution: {integrity: sha512-S2PxMnyvmvuHZktfLHoJd9qxfLRRAcDYDkWp9hSITl6X6MS+3bpOppqh3ofv/sgvl7BOx9pR03EZ4Zeail/L5Q==}
     dev: true
 
-  /@rester/filesystem/0.22.0-20220314191437:
-    resolution: {integrity: sha512-BFEsF8DzDV1gd5Vxz3jMCh1pqAP98dgm9r+qhFqoMnMv4MBhCPIsfzEuwhAH4J3S4CQAgXIoTpYiQJ7QvoIcew==}
+  /@rester/filesystem/0.22.0-20220315093620:
+    resolution: {integrity: sha512-PDXuUQtegE+WCzbn03VB5ucMTAZJzx01UHN5cVrFXUDWKXQ7Ubz5+nw2UAcc1bT7rpGjp8WGUMBkmrfMO/Zhng==}
     dependencies:
       fs-extra: 10.0.1
     dev: false
 
-  /@rester/logger/0.22.0-20220314191437:
-    resolution: {integrity: sha512-U32+c3VZSSccnF6NnW0goD03gPAqhITqSpxacF4VgD7l/Qnc7e+1u5lAYKzrg+nBJCqrQzwGeM+/M1IN5CiXgA==}
+  /@rester/logger/0.22.0-20220315093620:
+    resolution: {integrity: sha512-gFH4PrPTo34K2n/yh5DLc+HMQQgpimZkxg9FmCG/yu/8BtkmIxw5nbok++zgjXZhpXGA+At8v0EqLh0MWn70bw==}
     dependencies:
-      '@rester/filesystem': 0.22.0-20220314191437
+      '@rester/filesystem': 0.22.0-20220315093620
     dev: false
 
-  /@rester/nx/0.22.0-20220314191437:
-    resolution: {integrity: sha512-p4iko33deAtPCKKgQkxksNKh9y6w1djqBj+TezJa6gOfBQNs5Un5Opc8Bwt/1Mm54XkJ91oWxFR8qdHJZ7N7EA==}
+  /@rester/nx/0.22.0-20220315093620:
+    resolution: {integrity: sha512-aT5rJ3J9M7gG3UO19LdwZx4+d9RKWNnkW8iu54yCiS2M5lYIotik6B+pHkOcQr9lSi9X1GONx3tye0YCjC35cA==}
     dependencies:
       '@nrwl/devkit': 13.8.5
       comment-json: 4.2.2

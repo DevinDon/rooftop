@@ -20,3 +20,157 @@ model Aphorism {
   content   String   @postgresql.VarChar(32)
   published Boolean  @default(false)
 }
+
+/// 电影
+model Movie {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  releasedAt DateTime?
+  title      String
+  aliases    String[]
+  rates      Rate[]
+  areas      Area[]
+  categories Category[]
+  languages  Language[]
+  length     Float
+  crews      Crew[]
+  covers     Resource[] @relation(name: "cover-resource")
+  sources    Resource[] @relation(name: "source-resource")
+}
+
+/// 评分
+model Rate {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  movie   Movie? @relation(fields: [movieId], references: [id])
+  movieId Int?
+
+  /// 来源名称
+  name   String
+  /// 评分
+  rate   Float
+  /// 来源网站、文章或资料等
+  source String
+}
+
+/// 地区
+model Area {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  movies  Movie[]
+  persons Person[]
+
+  /// 地区名（中文）
+  name     String
+  /// 地区名（母语）
+  realName String
+}
+
+/// 分类
+model Category {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  movies Movie[]
+
+  name String
+}
+
+/// 语言
+model Language {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  movies Movie[]
+
+  name String
+}
+
+/// 剧组工作人员
+model Crew {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  movie    Movie  @relation(fields: [movieId], references: [id])
+  movieId  Int
+  person   Person @relation(fields: [personId], references: [id])
+  personId Int
+
+  /// 演员姓名（中文）
+  name         String
+  /// 演员姓名（母语）
+  realName     String
+  /// 饰演的角色名（中文），剧务人员为空
+  playName     String?
+  /// 饰演的角色名（母语），剧务人员为空
+  playRealName String?
+  /// 在剧组中的职务
+  roles        Role[]
+}
+
+/// 资源
+model Resource {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  movieCovers    Movie[]  @relation(name: "cover-resource")
+  movieSources   Movie[]  @relation(name: "source-resource")
+  personPictures Person[]
+
+  name        String?
+  description String?
+  link        String
+}
+
+/// 剧中担任
+enum Role {
+  /// 导演
+  Director
+  /// 编剧
+  ScriptWriter
+  /// 演员
+  Actor
+  /// 主演
+  Starring
+  /// 客串演员
+  Cameo
+  /// 剧务
+  Drama
+}
+
+/// 人员
+model Person {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @postgresql.Timestamp(6)
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  area   Area? @relation(fields: [areaId], references: [id])
+  areaId Int?
+
+  /// 姓名（中文）
+  name     String
+  /// 姓名（母语）
+  realName String
+  birth    DateTime?
+  sex      String?
+  pictures Resource[]
+  crews    Crew[]
+}

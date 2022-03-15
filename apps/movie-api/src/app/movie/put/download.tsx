@@ -95,6 +95,7 @@ export class Downloader {
 
   private workers: EventEmitter[];
 
+  /** md5 of source m3u8 file content */
   private md5: string;
 
   private dir: string;
@@ -152,23 +153,29 @@ export class Downloader {
 
   async start() {
     await ensureDir(this.dir);
+    const listPath = resolve(this.dir, 'index.list');
     const list = this.uris
       .map(uri => relative(Downloader.STORAGE_PATH, resolve(this.dir, this.getFilename(uri))))
       .map(path => `file '${path}'`)
       .join('\n');
-    const listPath = resolve(this.dir, 'index.list');
-    const m3u8 = this.rawUris.reduce((content, uri) => content.replace(uri, this.getFilename(uri)), this.m3u8);
     const m3u8Path = resolve(this.dir, 'index.m3u8');
+    const m3u8 = this.rawUris.reduce((content, uri) => content.replace(uri, this.getFilename(uri)), this.m3u8);
+    const sourceHtmlPath = resolve(this.dir, 'source.html');
+    const sourceHtml = await this.page.innerHTML('html');
+    const sourceM3u8Path = resolve(this.dir, 'source.m3u8');
+    const sourceM3u8 = this.m3u8;
+    const metadataPath = resolve(this.dir, 'metadata.json');
     const metadata: Metadata = {
       source: this.page.url(),
       title: await this.page.title(),
       m3u8: 'index.m3u8',
       md5: this.md5,
     };
-    const metadataPath = resolve(this.dir, 'metadata.json');
     await Promise.all([
       writeFile(listPath, list),
       writeFile(m3u8Path, m3u8),
+      writeFile(sourceHtmlPath, sourceHtml),
+      writeFile(sourceM3u8Path, sourceM3u8),
       writeJson(metadataPath, metadata),
     ]);
     for (const worker of this.workers) {
